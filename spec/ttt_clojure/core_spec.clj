@@ -2,6 +2,11 @@
   (:require [speclj.core :refer :all]
             [ttt-clojure.core :refer :all]))
 
-(describe "a test"
-  (it "FIXME, I fail."
-    (should= 0 1)))
+(describe "empty board"
+  (it "creates an empty 3x3 board"
+    (should= [
+        [0 1 2]
+        [3 4 5]
+        [6 7 8]
+      ]
+      empty-board)))
