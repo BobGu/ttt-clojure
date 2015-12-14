@@ -22,3 +22,20 @@
 
   (it "should return true if space is available"
   (should (space-available? ["X" "X" 2 3 4 5 "O" "O" 8] 2))))
+
+(describe "game-won?"
+  (it "should return true three of same pieces in top row"
+  (should (game-won? ["X", "X", "X", 3 4 5 6 7 8])))
+
+  (it "should return false if two of same pieces in a row"
+  (should-not (game-won? ["X" "X" 2 3 4 5 6 7 8])))
+
+  (it "should return true if three of same piece in middle row"
+  (should (game-won? [0 1 2 "X" "X" "X" 6 7 8])))
+
+  (it "should return true if three of same piece in bottom row"
+  (should (game-won? [0 1 2 3 4 5 "X" "X" "X"]))))
+
+(describe "rows"
+  (it "should return the rows of a board"
+  (should= [[0 1 2] [3 4 5] [6 7 8]] (rows [0 1 2 3 4 5 6 7 8]))))
