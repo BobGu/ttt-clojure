@@ -5,3 +5,6 @@
 
 (defn update-board [board piece position]
   (assoc board position piece))
+
+(defn space-available? [board position]
+  (= position (nth board position)))

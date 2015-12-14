@@ -8,6 +8,17 @@
       empty-board)))
 
 (describe "update-board"
-  (it "returns updated board given piece and position"
+  (it "returns correctly updated board given an X and position 0"
     (should= ["X" 1 2 3 4 5 6 7 8]
-    (update-board [0 1 2 3 4 5 6 7 8] "X" 0))))
+    (update-board [0 1 2 3 4 5 6 7 8] "X" 0)))
+
+  (it "returns correctly updated board given an O and posiion 8"
+    (should= [0 1 2 3 4 5 6 7 "O"]
+    (update-board [0 1 2 3 4 5 6 7 "O"] "O" 8))))
+
+(describe "space-available?"
+  (it "should return false if space is not available"
+  (should-not (space-available? ["X" 1 2 3 4 5 6 7 8] 0)))
+
+  (it "should return true if space is available"
+  (should (space-available? ["X" "X" 2 3 4 5 "O" "O" 8] 2))))
