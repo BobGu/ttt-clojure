@@ -13,6 +13,7 @@
   (partition 3 board))
 
 (defn game-won? [board]
-  (some true? (vector (every? (fn [space] (= "X" space)) (vector (first board) (nth board 1) (nth board 2)))
-  (every? (fn [space] (= "X" space)) (vector (nth board 3) (nth board 4) (nth board 5)))
-  (every? (fn [space] (= "X" space)) (vector (nth board 6) (nth board 7) (nth board 8))))))
+  (let [rows (rows board)]
+  (some true? (vector (every? (fn [space] (= "X" space)) (first rows))
+  (every? (fn [space] (= "X" space)) (nth rows 1))
+  (every? (fn [space] (= "X" space)) (nth rows 2))))))
