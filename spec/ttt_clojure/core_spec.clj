@@ -45,3 +45,16 @@
 
   (it "should return [[\"O\" 1 2] [3 \"O\" 5] [6 7 8]]"
   (should= [["O" 1 2] [3 "O" 5] [6 7 8]] (rows ["O" 1 2 3 "O" 5 6 7 8]))))
+
+(describe "three-in-a-row?"
+  (it "should return true given [\"X\" \"X\" \"X\"]"
+  (should (three-in-a-row? ["X" "X" "X"])))
+
+  (it "should return true given [\"O\" \"O\" \"O\"]"
+  (should (three-in-a-row? ["O" "O" "O"])))
+
+  (it "should return false given [\"O\" 1 \"O\"]"
+  (should-not (three-in-a-row? ["O" 1 "O"])))
+
+  (it "should return false given [\"X\" \"O\" \"X\"]"
+  (should-not (three-in-a-row? ["X" "O" "X"]))))

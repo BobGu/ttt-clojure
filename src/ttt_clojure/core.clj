@@ -12,9 +12,9 @@
 (defn rows [board]
   (partition 3 board))
 
-(defn three-in-a-row-x? [row]
-  (every? (fn [space] (= "X" space)) row))
+(defn three-in-a-row? [row]
+  (every? (fn [space] (= (first row) space)) row))
 
 (defn game-won? [board]
   (let [rows (rows board)]
-  (some true? (map #(three-in-a-row-x? %) rows))))
+  (some true? (map #(three-in-a-row? %) rows))))
