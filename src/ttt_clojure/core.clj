@@ -12,8 +12,9 @@
 (defn rows [board]
   (partition 3 board))
 
+(defn three-in-a-row-x? [row]
+  (every? (fn [space] (= "X" space)) row))
+
 (defn game-won? [board]
   (let [rows (rows board)]
-  (some true? (vector (every? (fn [space] (= "X" space)) (first rows))
-  (every? (fn [space] (= "X" space)) (nth rows 1))
-  (every? (fn [space] (= "X" space)) (nth rows 2))))))
+  (some true? (map #(three-in-a-row-x? %) rows))))
