@@ -37,5 +37,11 @@
   (should (game-won? [0 1 2 3 4 5 "X" "X" "X"]))))
 
 (describe "rows"
-  (it "should return the rows of a board"
-  (should= [[0 1 2] [3 4 5] [6 7 8]] (rows [0 1 2 3 4 5 6 7 8]))))
+  (it "should return [0 1 2 3 4 5 6 7 8]"
+  (should= [[0 1 2] [3 4 5] [6 7 8]] (rows [0 1 2 3 4 5 6 7 8])))
+
+  (it "should return [[\"X\" \"X\" \"X\"] [3 4 5] [6 7 8]"
+  (should= [["X" "X" "X"] [3 4 5] [6 7 8]] (rows ["X" "X" "X" 3 4 5 6 7 8])))
+
+  (it "should return [[\"O\" 1 2] [3 \"O\" 5] [6 7 8]]"
+  (should= [["O" 1 2] [3 "O" 5] [6 7 8]] (rows ["O" 1 2 3 "O" 5 6 7 8]))))
