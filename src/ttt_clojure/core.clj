@@ -12,6 +12,10 @@
 (defn rows [board]
   (partition 3 board))
 
+(defn columns [board]
+  (let [rows (rows board)]
+  (map vector (first rows) (nth rows 1) (nth rows 2))))
+
 (defn three-in-a-row? [row]
   (every? (fn [space] (= (first row) space)) row))
 
