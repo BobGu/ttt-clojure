@@ -43,7 +43,10 @@
   (should (game-won? [0 1 "X" 3 4 "X" 6 7 "X"])))
 
   (it "should return true if all pieces in a diagonal from left to right are the same"
-  (should (game-won? ["X" 1 2 3 "X" 5 6 7 "X"]))))
+  (should (game-won? ["X" 1 2 3 "X" 5 6 7 "X"])))
+
+  (it "should return true if all pieces in a diagonal from right to left are the same"
+  (should (game-won? [0 1 "X" 3 "X" 5 "X" 7 8]))))
 
 (describe "rows"
   (it "should return the rows given an empty board"
@@ -69,7 +72,7 @@
    possible-wins (possible-wins [0 1 2 3 4 5 6 7 8])]
    (should (every? (fn [x] (some #(= x %) possible-wins)) expected-results)))))
 
-(describe "all-spaces-the_same?"
+(describe "all spaces the same?"
   (it "returns true if all spaces are the same"
   (should (all-spaces-the-same? ["X" "X" "X"]))
   (should (all-spaces-the-same? ["O" "O" "O"])))

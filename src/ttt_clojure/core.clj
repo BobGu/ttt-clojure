@@ -14,7 +14,7 @@
 
 (defn columns [board]
   (let [rows (rows board)]
-  (map vector (rows 0 ) (rows 1) (rows 2))))
+  (map vector (rows 0) (rows 1) (rows 2))))
 
 (defn diagonals [board]
   (vector
