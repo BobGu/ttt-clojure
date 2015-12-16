@@ -16,6 +16,11 @@
   (let [rows (rows board)]
   (map vector (first rows) (nth rows 1) (nth rows 2))))
 
+(defn diagonals [board]
+  (vector
+    (map board [0 4 8])
+    (map board [2 4 6])))
+
 (defn possible-wins [board]
   (let [rows (rows board) columns (columns board)]
   (apply conj rows columns)))

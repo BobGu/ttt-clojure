@@ -56,10 +56,15 @@
   (it "should return the columns given an empty board"
   (should= [[0 3 6] [1 4 7] [2 5 8]] (columns [0 1 2 3 4 5 6 7 8]))))
 
+(describe "diagonals"
+  (it "should return the diagonals given and empty board"
+  (should= ['(0 4 8) '(2 4 6)] (diagonals  [0 1 2 3 4 5 6 7 8]))))
+
 (describe "possible-wins"
-  (it "should return the rows and columns from a board"
-  (should= [[0 1 2] [3 4 5] [6 7 8] [0 3 6] [1 4 7] [2 5 8]]
-  (possible-wins [0 1 2 3 4 5 6 7 8]))))
+  (it "should return the rows and columns and digaonals from a board"
+  (let [expected-results [[0 1 2] [3 4 5] [6 7 8] [0 3 6] [1 4 7] [2 5 8] [0 4 8] [2 4 6] [0 4 8] [2 4 6]]
+   possible-wins (possible-wins [0 1 2 3 4 5 6 7 8])]
+   (every? (fn [x] (some? (= x possible-wins ))) expected-results))))
 
 (describe "all-spaces-the_same?"
   (it "returns true if all spaces are the same"
