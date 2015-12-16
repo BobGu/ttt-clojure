@@ -64,7 +64,7 @@
   (it "should return the rows and columns and digaonals from a board"
   (let [expected-results [[0 1 2] [3 4 5] [6 7 8] [0 3 6] [1 4 7] [2 5 8] [0 4 8] [2 4 6] [0 4 8] [2 4 6]]
    possible-wins (possible-wins [0 1 2 3 4 5 6 7 8])]
-   (every? (fn [x] (some? (= x possible-wins ))) expected-results))))
+   (should (every? (fn [x] (some #(= x %) expected-results)) possible-wins)))))
 
 (describe "all-spaces-the_same?"
   (it "returns true if all spaces are the same"
