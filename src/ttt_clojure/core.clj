@@ -10,15 +10,19 @@
   (= position (nth board position)))
 
 (defn rows [board]
-  (partition 3 board))
+  (into [] (partition 3 board)))
 
 (defn columns [board]
   (let [rows (rows board)]
   (map vector (first rows) (nth rows 1) (nth rows 2))))
 
+(defn possible-wins [board]
+  (let [rows (rows board) columns (columns board)]
+  (apply conj rows columns)))
+
 (defn three-in-a-row? [row]
   (every? (fn [space] (= (first row) space)) row))
 
 (defn game-won? [board]
-  (let [rows (rows board)]
-  (some true? (map #(three-in-a-row? %) rows))))
+  (let [possible-wins (possible-wins board)]
+  (some true? (map #(three-in-a-row? %) possible-wins))))

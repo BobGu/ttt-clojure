@@ -34,7 +34,10 @@
   (should (game-won? [0 1 2 "X" "X" "X" 6 7 8])))
 
   (it "should return true if three of same piece in bottom row"
-  (should (game-won? [0 1 2 3 4 5 "X" "X" "X"]))))
+  (should (game-won? [0 1 2 3 4 5 "X" "X" "X"])))
+
+  (it "should return true if three of same piece in left column"
+  (should (game-won? ["X" 1 2 "X" 4 5 "X" 7 8]))))
 
 (describe "rows"
   (it "should return [[0 1 2] [3 4 5] [6 7 8]]"
@@ -49,6 +52,11 @@
 (describe "columns"
   (it "should return [[0 3 6] [1 4 7] [2 5 8]] if board is [0 1 2 3 4 5 6 7 8]"
   (should= [[0 3 6] [1 4 7] [2 5 8]] (columns [0 1 2 3 4 5 6 7 8]))))
+
+(describe "possible-wins"
+  (it "should return [[0 1 2] [3 4 5] [6 7 8] [0 3 6] [1 4 7] [2 5 8]]"
+  (should= [[0 1 2] [3 4 5] [6 7 8] [0 3 6] [1 4 7] [2 5 8]]
+  (possible-wins [0 1 2 3 4 5 6 7 8]))))
 
 (describe "three-in-a-row?"
   (it "should return true given [\"X\" \"X\" \"X\"]"
