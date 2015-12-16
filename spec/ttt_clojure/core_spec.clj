@@ -64,7 +64,8 @@
 
 (describe "diagonals"
   (it "should return the diagonals given and empty board"
-  (should= ['(0 4 8) '(2 4 6)] (diagonals  empty-board))))
+  (let [diagonals (diagonals empty-board)]
+  (should (every? (fn [x] (some #(= x %) diagonals)) ['(2 4 6) '(0 4 8)])))))
 
 (describe "possible-wins"
   (it "should return the rows and columns and digaonals from a board"
