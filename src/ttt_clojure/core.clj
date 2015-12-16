@@ -20,9 +20,9 @@
   (let [rows (rows board) columns (columns board)]
   (apply conj rows columns)))
 
-(defn three-in-a-row? [row]
-  (every? (fn [space] (= (first row) space)) row))
+(defn all-spaces-the-same? [set-of-spaces]
+  (every? (fn [space] (= (first set-of-spaces) space)) set-of-spaces))
 
 (defn game-won? [board]
   (let [possible-wins (possible-wins board)]
-  (some true? (map #(three-in-a-row? %) possible-wins))))
+  (some true? (map #(all-spaces-the-same? %) possible-wins))))

@@ -61,13 +61,13 @@
   (should= [[0 1 2] [3 4 5] [6 7 8] [0 3 6] [1 4 7] [2 5 8]]
   (possible-wins [0 1 2 3 4 5 6 7 8]))))
 
-(describe "three-in-a-row?"
-  (it "should return true given three of same piece in a row"
-  (should (three-in-a-row? ["X" "X" "X"])
-  (should (three-in-a-row? ["O" "O" "O"]))))
+(describe "all-spaces-the_same?"
+  (it "returns true if all spaces are the same"
+  (should (all-spaces-the-same? ["X" "X" "X"]))
+  (should (all-spaces-the-same? ["O" "O" "O"])))
 
   (it "should return false given an available space and the rest the same piece"
-  (should-not (three-in-a-row? ["O" 1 "O"])))
+  (should-not (all-spaces-the-same? ["O" 1 "O"])))
 
   (it "should return false given mostly one piece and one of the opposing piece"
-  (should-not (three-in-a-row? ["X" "O" "X"]))))
+  (should-not (all-spaces-the-same? ["X" "O" "X"]))))
