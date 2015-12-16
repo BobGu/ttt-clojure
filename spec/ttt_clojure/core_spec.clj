@@ -10,7 +10,7 @@
 (describe "update-board"
   (it "returns correctly updated board given an X and position 0"
     (should= ["X" 1 2 3 4 5 6 7 8]
-    (update-board [0 1 2 3 4 5 6 7 8] "X" 0)))
+    (update-board empty-board "X" 0)))
 
   (it "returns correctly updated board given an O and posiion 8"
     (should= [0 1 2 3 4 5 6 7 "O"]
@@ -50,7 +50,7 @@
 
 (describe "rows"
   (it "should return the rows given an empty board"
-  (should= [[0 1 2] [3 4 5] [6 7 8]] (rows [0 1 2 3 4 5 6 7 8])))
+  (should= [[0 1 2] [3 4 5] [6 7 8]] (rows empty-board)))
 
   (it "should return correct rows given a board with some spaces taken"
   (should= [["X" "X" "X"] [3 4 5] [6 7 8]] (rows ["X" "X" "X" 3 4 5 6 7 8])))
@@ -60,16 +60,16 @@
 
 (describe "columns"
   (it "should return the columns given an empty board"
-  (should= [[0 3 6] [1 4 7] [2 5 8]] (columns [0 1 2 3 4 5 6 7 8]))))
+  (should= [[0 3 6] [1 4 7] [2 5 8]] (columns empty-board))))
 
 (describe "diagonals"
   (it "should return the diagonals given and empty board"
-  (should= ['(0 4 8) '(2 4 6)] (diagonals  [0 1 2 3 4 5 6 7 8]))))
+  (should= ['(0 4 8) '(2 4 6)] (diagonals  empty-board))))
 
 (describe "possible-wins"
   (it "should return the rows and columns and digaonals from a board"
   (let [expected-results [[0 1 2] [3 4 5] [6 7 8] [0 3 6] [1 4 7] [2 5 8] [0 4 8] [2 4 6] [0 4 8] [2 4 6]]
-   possible-wins (possible-wins [0 1 2 3 4 5 6 7 8])]
+   possible-wins (possible-wins empty-board)]
    (should (every? (fn [x] (some #(= x %) possible-wins)) expected-results)))))
 
 (describe "all spaces the same?"
