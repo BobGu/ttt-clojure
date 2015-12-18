@@ -27,7 +27,3 @@
 
 (defn all-spaces-the-same? [set-of-spaces]
   (every? (fn [space] (= (first set-of-spaces) space)) set-of-spaces))
-
-(defn game-won? [board]
-  (let [possible-wins (possible-wins board)]
-  (some true? (map #(all-spaces-the-same? %) possible-wins))))
