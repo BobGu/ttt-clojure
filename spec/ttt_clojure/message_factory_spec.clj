@@ -10,3 +10,10 @@
 (describe "ask-player-for-name"
   (it "should ask player for thier name"
   (should= "What is your name?" ask-player-for-name)))
+
+(describe "ask-player-for-piece"
+  (it "should ask player what piece they would like to be"
+  (should= "What piece would you like to be?" ask-player-for-piece)))
+
+
+(run-specs)

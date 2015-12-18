@@ -5,3 +5,6 @@
 
 (def ask-player-for-name
   "What is your name?")
+
+(def ask-player-for-piece
+  "What piece would you like to be?")
