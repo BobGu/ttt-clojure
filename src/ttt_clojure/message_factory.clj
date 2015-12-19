@@ -7,4 +7,4 @@
   "What is your name?")
 
 (def ask-player-for-piece
-  "What piece would you like to be?")
+  "What piece would you like to be?  Please type in X or O")
