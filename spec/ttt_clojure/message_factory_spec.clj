@@ -15,6 +15,7 @@
   (it "should ask player what piece they would like to be"
   (should= "What piece would you like to be?  Please type in X or O" ask-player-for-piece)))
 
-(describe "board"
-  (it "it should look like a tic tac toe board"
-  (should=  (board board))))
+(describe "instructions"
+  (it "should give a list of game instructions and an example board"
+  (should-contain #"Welcome to tic tac toe!*"
+  instructions)))
