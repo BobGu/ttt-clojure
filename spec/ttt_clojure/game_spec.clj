@@ -27,3 +27,7 @@
 
   (it "should return true if all pieces in a diagonal from right to left are the same"
   (should (game-won? [0 1 "X" 3 "X" 5 "X" 7 8]))))
+
+(describe "get-player-name"
+  (it "should return a players name when it is valid"
+    (should= "Robert" (get-player-name))))
