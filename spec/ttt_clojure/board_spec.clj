@@ -1,6 +1,6 @@
-(ns ttt-clojure.core-spec
+(ns ttt-clojure.board-spec
   (:require [speclj.core :refer :all]
-            [ttt-clojure.core :refer :all]))
+            [ttt-clojure.board :refer :all]))
 
 (describe "empty board"
   (it "creates an empty 3x3 board"

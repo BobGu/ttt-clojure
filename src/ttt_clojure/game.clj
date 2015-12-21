@@ -1,5 +1,5 @@
 (ns ttt-clojure.game
-  (:require [ttt-clojure.core :refer :all]))
+  (:require [ttt-clojure.board :refer :all]))
 
 
 (defn game-won? [board]

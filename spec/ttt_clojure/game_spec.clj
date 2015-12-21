@@ -1,7 +1,7 @@
 (ns ttt-clojure.game-spec
   (:require [speclj.core :refer :all]
     [ttt-clojure.game :refer :all]
-    [ttt-clojure.core :refer :all]))
+    [ttt-clojure.board :refer :all]))
 
 (describe "game-won?"
   (it "should return true if all pieces in the top row are the same"
