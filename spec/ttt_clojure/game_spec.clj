@@ -29,5 +29,10 @@
   (should (game-won? [0 1 "X" 3 "X" 5 "X" 7 8]))))
 
 (describe "get-player-name"
+  (around [it]
+    (with-out-str (it)))
+    
   (it "should return a players name when it is valid"
-    (should= "Robert" (get-player-name))))
+    (should= "Robert"
+      (with-in-str "Robert"
+        (get-player-name)))))
