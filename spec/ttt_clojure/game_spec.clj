@@ -31,8 +31,14 @@
 (describe "get-player-name"
   (around [it]
     (with-out-str (it)))
-    
+
   (it "should return a players name when it is valid"
     (should= "Robert"
       (with-in-str "Robert"
-        (get-player-name)))))
+        (get-player-name))))
+
+  (it "should not return a players name if it is blank"
+    (should-not= ""
+      (with-in-str ""
+      (with-in-str "Robert"
+        (get-player-name))))))

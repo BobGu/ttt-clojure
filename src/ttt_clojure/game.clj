@@ -13,7 +13,7 @@
   (let [name (prompt ask-player-for-name)]
   (if (valid-name? name)
     name
-    get-player-name)))
+    (get-player-name))))
 
 
 (defn start-game []
