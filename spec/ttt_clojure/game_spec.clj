@@ -39,6 +39,11 @@
 
   (it "should not return a players name if it is blank"
     (should-not= ""
-      (with-in-str ""
-      (with-in-str "Robert"
-        (get-player-name))))))
+      (with-in-str "\nRobert"
+        (get-player-name))))
+
+  (it "should output an error message if a players name is invalid"
+    (should-contain #"is not a valid name*"
+      (with-out-str
+      (with-in-str "\nRobert"
+      (get-player-name))))))

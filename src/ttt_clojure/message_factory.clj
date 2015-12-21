@@ -26,3 +26,6 @@
   For example if I were the letter X and i chose the center space by typing in the number 4 then
   the board would look like this.\n"
   (board-formatter board))))
+
+(defn invalid-name [name]
+  (str name " is not a valid name.  The name must be 1-26 characters in length"))

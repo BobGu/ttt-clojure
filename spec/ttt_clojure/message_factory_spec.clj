@@ -19,3 +19,7 @@
   (it "should give a list of game instructions and an example board"
   (should-contain #"Welcome to tic tac toe!*"
   instructions)))
+
+(describe "invalid-name"
+  (it "should give a detailed error about why a name is invalid"
+  (should-contain #"is not a valid name*" (invalid-name ""))))
