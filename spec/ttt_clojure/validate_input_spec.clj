@@ -23,4 +23,7 @@
     (should (valid-piece? "x")))
 
   (it "should return true regardless of whitespace"
-    (should (valid-piece? "O "))))
+    (should (valid-piece? "O ")))
+
+  (it "should return false if piece is not valid"
+    (should-not (valid-piece? "poop"))))
