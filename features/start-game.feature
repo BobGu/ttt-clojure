@@ -11,3 +11,9 @@ Feature: Starting a game
     Given the game has started
     And I've already seen the instructions
     Then I should be asked for my name
+
+  Scenario: A user gets asked what piece he wants to be
+    Given the game has started
+    And I've already seen the instructions
+    And I've been asked for my name
+    Then I should be asked what piece I want to be

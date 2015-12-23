@@ -20,10 +20,8 @@
 
 (defn start-game []
   (print instructions)
-  (get-player-name))
-;Game flow
-;Game asks for first players name
-;asks for first players piece "Either X or O"
+  (get-player-name)
+  (print ask-player-for-piece))
 ;if not valid asks again
 ;Game asks for second players name
   ;First player is prompted to go, board is shown
