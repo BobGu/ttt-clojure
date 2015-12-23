@@ -19,11 +19,8 @@
 
 
 (defn start-game []
-  (print instructions))
-  ; (if (valid-name? (prompt ask-player-for-name)))
-    ;first player variable will have this name
-    ;keep asking for a name
-  ; )
+  (print instructions)
+  (get-player-name))
 ;Game flow
 ;Game asks for first players name
 ;asks for first players piece "Either X or O"
