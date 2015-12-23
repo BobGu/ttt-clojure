@@ -9,27 +9,18 @@
   (let [possible-wins (possible-wins board)]
   (some true? (map #(all-spaces-the-same? %) possible-wins))))
 
-(defn get-player-name []
-  (let [name (prompt ask-player-for-name)]
-  (if (valid-name? name)
-    name
-    (do
-      (print (invalid-name name))
-      (get-player-name)))))
-
-
-(defn get-player-piece []
-  (let [piece (prompt ask-player-for-piece)]
-  (if (valid-piece? piece)
-    piece 
-    (do
-      (print (invalid-piece piece))
-      (get-player-piece)))))
+(defn get-player-input [message validator invalid-message]
+  (let [input (prompt message) valid-input validator invalid-message invalid-message]
+    (if (valid-input input)
+     input
+     (do
+       (print (invalid-message input))
+       (get-player-input message validator invalid-message)))))
 
 (defn start-game []
   (print instructions)
-  (get-player-name)
-  (get-player-piece))
+  (get-player-input ask-player-for-name valid-name? invalid-name)
+  (get-player-input ask-player-for-piece valid-piece? invalid-piece))
 ;if not valid asks again
 ;Game asks for second players name
   ;First player is prompted to go, board is shown
