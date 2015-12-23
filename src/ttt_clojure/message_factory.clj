@@ -29,3 +29,6 @@
 
 (defn invalid-name [name]
   (str name " is not a valid name.  The name must be 1-26 characters in length"))
+
+(defn invalid-piece [piece]
+  (str piece " is not a valid piece.  Please choose X or O"))

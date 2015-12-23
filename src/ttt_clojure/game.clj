@@ -18,10 +18,18 @@
       (get-player-name)))))
 
 
+(defn get-player-piece []
+  (let [piece (prompt ask-player-for-piece)]
+  (if (valid-piece? piece)
+    piece 
+    (do
+      (print (invalid-piece piece))
+      (get-player-piece)))))
+
 (defn start-game []
   (print instructions)
   (get-player-name)
-  (print ask-player-for-piece))
+  (get-player-piece))
 ;if not valid asks again
 ;Game asks for second players name
   ;First player is prompted to go, board is shown

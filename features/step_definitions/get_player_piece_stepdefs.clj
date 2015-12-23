@@ -6,5 +6,4 @@
 
 (Then #"^I should be asked what piece I want to be" []
       (should-contain #"What piece*"
-        (with-out-str (with-in-str "Robert" (start-game)))))
-
+        (with-out-str (with-in-str "Robert\nX" (start-game)))))

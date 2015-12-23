@@ -23,3 +23,7 @@
 (describe "invalid-name"
   (it "should give a detailed error about why a name is invalid"
   (should-contain #"is not a valid name*" (invalid-name ""))))
+
+(describe "invalid-piece"
+  (it "should give a deatiled error about why a piece is invalid"
+    (should-contain #"is not a valid piece*"(invalid-piece "p"))))
