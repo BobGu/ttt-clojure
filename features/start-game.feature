@@ -7,12 +7,12 @@ Feature: Starting a game
     Given the game has started
     Then I should see instructions on how to play the game
 
-  Scenario: A user gets asked for his name
+  Scenario: A user gets asked for name
     Given the game has started
     And I've already seen the instructions
     Then I should be asked for my name
 
-  Scenario: A user gets asked what piece he wants to be
+  Scenario: A user gets asked what piece they want to be
     Given the game has started
     And I've already seen the instructions
     And I've been asked for my name
