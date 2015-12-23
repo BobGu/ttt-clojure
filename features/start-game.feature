@@ -3,13 +3,11 @@ Feature: Starting a game
   To make sure the user has a good user experience and the order for the
   tic tac toe game makes sense.
 
-  Background:
-    Given the game has started
-
   Scenario: Instruction for the game
+    Given the game has started
     Then I should see instructions on how to play the game
 
   Scenario: A user gets asked for his name
-    Given I've already seen the instructions
+    Given the game has started
+    And I've already seen the instructions
     Then I should be asked for my name
-  
