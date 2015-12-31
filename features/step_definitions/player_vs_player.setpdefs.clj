@@ -28,13 +28,17 @@
 
 
 (Then #"^I should be asked for my player piece$" []
-    (should-contain #"What piece would you like"
-      (first (@world :output))))
+  (should-contain #"What piece would you like"
+    (first (@world :output))))
+
+(Given #"^I enter a piece that is not a X or O$" []
+  (swap! world update-in [:input]
+    str (@world :input) "pooooopy\n"))
 
 
-
-
-
+(Then #"^I should have been told the piece I entered was invalid" []
+  (should-contain #"is not a valid piece"
+    (first (@world :output))))
 
 
 
