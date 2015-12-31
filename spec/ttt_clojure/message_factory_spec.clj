@@ -20,18 +20,6 @@
   (should-contain #"Welcome to tic tac toe!*"
   instructions)))
 
-(describe "invalid-name"
-  (it "should give a detailed error about why a name is invalid"
-  (should-contain #"is not a valid name*" (invalid-name ""))))
-
-(describe "invalid-piece"
-  (it "should give a deatiled error about why a piece is invalid"
-    (should-contain #"is not a valid piece*" (invalid-piece "p"))))
-
-(describe "turn-order"
-  (it "should ask the players for turn order"
-    (should-contain #"Type 1 if you would like*" (turn-order "Bobby"))))
-
-(describe "invalid-turn-order"
-  (it "give a message telling them their turn order was invalid"
-    (should-contain #"9 is not a valid turn order*" (invalid-turn-order "9"))))
+(describe "invalid-input"
+  (it "gives a generic message about input being invalid"
+    (should-contain #"superdooperinvalidmessage is not a valid input*" (invalid-input "superdooperinvalidmessage"))))

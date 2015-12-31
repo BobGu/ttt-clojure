@@ -38,27 +38,27 @@
   (it "should return a players players piece if valid"
     (should= "X"
       (with-in-str "X" 
-        (get-player-input ask-player-for-piece valid-piece? invalid-piece))))
+        (get-player-input ask-player-for-piece valid-piece?  ))))
 
   (it "should return an error message if a piece is invalid"
-    (should-contain #"valid piece*"
+    (should-contain #"is not a valid input"
       (with-out-str
         (with-in-str "pooop\nX"
-          (get-player-input ask-player-for-piece valid-piece? invalid-piece)))))
+          (get-player-input ask-player-for-piece valid-piece?)))))
 
-  (it "should return a players name when it is valid"
+ (it "should return a players name when it is valid"
     (should= "Robert"
       (with-in-str "Robert"
-        (get-player-input ask-player-for-name valid-name? invalid-name))))
+        (get-player-input ask-player-for-name valid-name?))))
 
   (it "should not return a players name if it is blank"
     (should-not= ""
       (with-in-str "\nRobert"
-        (get-player-input ask-player-for-name valid-name? invalid-name))))
+        (get-player-input ask-player-for-name valid-name?))))
 
   (it "should output an error message if a players name is invalid"
-    (should-contain #"is not a valid name*"
+    (should-contain #"is not a valid input*"
       (with-out-str
       (with-in-str "\nRobert"
-      (get-player-input ask-player-for-name valid-name? invalid-name))))))
+      (get-player-input ask-player-for-name valid-name?))))))
 

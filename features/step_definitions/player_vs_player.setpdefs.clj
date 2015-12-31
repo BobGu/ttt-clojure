@@ -37,7 +37,7 @@
 
 
 (Then #"^I should have been told the piece I entered was invalid" []
-  (should-contain #"is not a valid piece"
+  (should-contain #"is not a valid input"
     (first (@world :output))))
 
 (Then #"^I should have been asked for my piece again" []

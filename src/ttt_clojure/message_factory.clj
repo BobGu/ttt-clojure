@@ -27,14 +27,5 @@
   the board would look like this.\n"
   (board-formatter board))))
 
-(defn invalid-name [name]
-  (str name " is not a valid name.  The name must be 1-26 characters in length"))
-
-(defn invalid-piece [piece]
-  (str piece " is not a valid piece.  Please choose X or O"))
-
-(defn turn-order [name]
-  (str "Type 1 if you would like " name "to go first and enter 2 if you would like  "name "to go second"))
-
-(defn invalid-turn-order [name]
-  (str name " is not a valid turn order"))
+(defn invalid-input [input]
+  (str input " is not a valid input" ))
