@@ -3,8 +3,16 @@
 
 (def world (atom {:game []
                   :output []
-                  :input "Robert\nX"}))
+                  :input ""}))
 
+
+(Given #"^I enter a valid name$" []
+  (swap! world update-in [:input]
+    str (@world :input) "Robert\n"))
+
+(Given #"^I enter a valid piece$" []
+  (swap! world update-in [:input]
+    str (@world :input) "x\n"))
 
 (Given #"^the game has started$" []
   (swap! world update-in [:output]
@@ -18,8 +26,6 @@
   (should-contain #"What is your name*" 
     (first (@world :output))))
 
-(When #"^I enter a valid name$" []
-  (print "something happens here"))
 
 (Then #"^I should be asked for my player piece$" []
     (should-contain #"What piece would you like"
@@ -37,7 +43,3 @@
 
 
 
-
-;(Then #"^I should be asked again what piece I want to be$" []
-;  (should= 2 
-;    (count (re-seq #"What piece" (with-out-str (with-in-str "Robert\nPooop\nO" (start-game)))))))
