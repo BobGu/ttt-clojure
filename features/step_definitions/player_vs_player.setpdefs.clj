@@ -46,9 +46,13 @@
       (first (@world :output))))))
 
 
+(Given #"^player 1 has entered all their info correctly" []
+  (swap! world update-in [:input]
+    str "Robert\nx\nJohnnny\n"))
 
-
-
-
+(Then #"^each player should have been asked for their name" []
+  (should= 2
+    (count (re-seq #"What is your name" 
+      (first (@world :output))))))
 
 

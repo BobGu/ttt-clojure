@@ -20,7 +20,8 @@
 (defn start-game []
   (print instructions)
   (get-player-input ask-player-for-name valid-name? invalid-name)
-  (get-player-input ask-player-for-piece valid-piece? invalid-piece))
+  (get-player-input ask-player-for-piece valid-piece? invalid-piece)
+  (get-player-input ask-player-for-name valid-name? invalid-name))
 ;if not valid asks again
 ;Game asks for second players name
   ;First player is prompted to go, board is shown
