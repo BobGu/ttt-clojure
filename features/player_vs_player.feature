@@ -16,3 +16,4 @@ Feature: Game is set up properly
     And I enter a valid piece
     And the game has started
     Then I should have been told the piece I entered was invalid 
+    And I should have been asked for my piece again

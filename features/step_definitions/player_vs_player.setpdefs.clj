@@ -40,6 +40,11 @@
   (should-contain #"is not a valid piece"
     (first (@world :output))))
 
+(Then #"^I should have been asked for my piece again" []
+  (should= 2
+    (count (re-seq #"What piece would you like"
+      (first (@world :output))))))
+
 
 
 
