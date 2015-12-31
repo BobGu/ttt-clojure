@@ -3,8 +3,8 @@
 
 (def world (atom {:game []
                   :output []
-                  :input "Robert\nX"
-                  :actual-result nil}))
+                  :input "Robert\nX"}))
+
 
 (Given #"^the game has started$" []
   (swap! world update-in [:output]
@@ -19,9 +19,11 @@
     (first (@world :output))))
 
 (When #"^I enter a valid name$" []
-  (with-in-str 
+  (print "something happens here"))
 
-
+(Then #"^I should be asked for my player piece$" []
+    (should-contain #"What piece would you like"
+      (first (@world :output))))
 
 
 
