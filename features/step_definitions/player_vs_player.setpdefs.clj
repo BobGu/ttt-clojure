@@ -48,7 +48,7 @@
 
 (Given #"^player 1 has entered all their info correctly" []
   (swap! world update-in [:input]
-    str "Robert\nx\nJohnnny\n"))
+    str "Billy\nx\n"))
 
 (Then #"^each player should have been asked for their name" []
   (should= 2

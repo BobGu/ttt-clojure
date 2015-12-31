@@ -22,6 +22,10 @@ Feature: Game is set up properly
 
   Scenario: A second player gets asked for their name
     Given player 1 has entered all their info correctly
-    And I enter a valid name 
+    And I enter a valid name
     And the game has started
     Then each player should have been asked for their name
+
+  Scenario: Choosing who goes first
+    Given the game is setup with players information
+    

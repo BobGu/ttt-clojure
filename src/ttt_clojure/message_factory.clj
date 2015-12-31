@@ -32,3 +32,6 @@
 
 (defn invalid-piece [piece]
   (str piece " is not a valid piece.  Please choose X or O"))
+
+(defn turn-order [name]
+  (str "Type 1 if you would like " name "to go first and enter 2 if you would like  "name "to go second"))
