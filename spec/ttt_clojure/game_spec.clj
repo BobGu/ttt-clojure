@@ -62,8 +62,3 @@
       (with-in-str "\nRobert"
       (get-player-input ask-player-for-name valid-name? invalid-name))))))
 
-;(describe "get-turn-order"
-;  (around [it]
-;    (with-out-str (it)))
-
-;  (it "should

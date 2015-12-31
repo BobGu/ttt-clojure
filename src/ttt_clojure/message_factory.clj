@@ -35,3 +35,6 @@
 
 (defn turn-order [name]
   (str "Type 1 if you would like " name "to go first and enter 2 if you would like  "name "to go second"))
+
+(defn invalid-turn-order [name]
+  (str name " is not a valid turn order"))

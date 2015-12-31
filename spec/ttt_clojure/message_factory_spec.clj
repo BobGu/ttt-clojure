@@ -29,5 +29,9 @@
     (should-contain #"is not a valid piece*" (invalid-piece "p"))))
 
 (describe "turn-order"
-  (it "shoudl ask the players for turn order"
+  (it "should ask the players for turn order"
     (should-contain #"Type 1 if you would like*" (turn-order "Bobby"))))
+
+(describe "invalid-turn-order"
+  (it "give a message telling them their turn order was invalid"
+    (should-contain #"9 is not a valid turn order*" (invalid-turn-order "9"))))
