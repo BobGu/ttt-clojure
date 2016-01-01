@@ -27,3 +27,13 @@
 
   (it "should return false if piece is not valid"
     (should-not (valid-piece? "poop"))))
+
+(describe "valid-turn-order?"
+  (it "should return true if it is a valid turn order"
+    (should (valid-turn-order? "1")))
+
+  (it "should return false if turn order is invalid"
+    (should-not (valid-turn-order? "19000000")))
+
+  (it "should return true if turn order is valid"
+    (should (valid-turn-order? "2"))))

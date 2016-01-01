@@ -28,4 +28,5 @@ Feature: Game is set up properly
 
   Scenario: Choosing who goes first
     Given the game is setup with players information
-    
+    And I enter which player goes first
+    Then I expect to be asked which player should go first

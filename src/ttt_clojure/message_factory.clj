@@ -9,6 +9,10 @@
 (def ask-player-for-piece
   "What piece would you like to be?  Please type in X or O")
 
+(defn ask-player-for-turn-order [name]
+  (str "Enter 1 if you would like " name " to go first and enter 2 if you would
+    like " name " to go second")) 
+
 (defn board-formatter [board]
   (str "     |     |     |\n "
   (first board)"   |  "(nth board 1)"  |  "(nth board 2)"  |    \n"

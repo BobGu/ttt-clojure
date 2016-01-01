@@ -60,5 +60,10 @@
     (should-contain #"is not a valid input*"
       (with-out-str
       (with-in-str "\nRobert"
-      (get-player-input ask-player-for-name valid-name?))))))
+      (get-player-input ask-player-for-name valid-name?)))))
+
+  (it "should return the turn order if it is valid"
+    (should= "1"
+      (with-in-str "1"
+        (get-player-input ask-player-for-turn-order valid-turn-order?)))))
 

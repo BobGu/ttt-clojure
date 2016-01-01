@@ -21,7 +21,7 @@
   (print instructions)
   (get-player-input ask-player-for-name valid-name?)
   (get-player-input ask-player-for-piece valid-piece?)
-  (get-player-input ask-player-for-name valid-name?))
+  (get-player-input ask-player-for-name valid-turn-order?))
 ;if not valid asks again
 ;Game asks for second players name
   ;First player is prompted to go, board is shown

@@ -55,4 +55,10 @@
     (count (re-seq #"What is your name" 
       (first (@world :output))))))
 
+(Given #"^the game is setup with players information$" []
+  (swap! world update-in[:input]
+    str "john\nX\nbobby\n"))
 
+(Given #"^I enter which player goes first" []
+  (swap! world update-in[:input]
+    str (@world :input) "1"))
