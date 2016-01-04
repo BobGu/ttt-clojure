@@ -91,17 +91,17 @@
     str "3\n"))
 
 (Then #"^I expect to see a board with that space filled$" []
-  (should-contain "     |     |     |\n 0   |  1  |  2  |    \n_____|_____|_____|\n     |     |     |\n X   |  4  |  5  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
+  (should-contain "     |     |     |\n 0   |  1  |  2  |    \n_____|_____|_____|\n     |     |     |\n X   |  4  |  O  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
     (last (@world :outputs))))
 
 (Given #"^I enter valid moves for the game$" []
   (swap! world update-in [:input]
-    str "1\n"))
+    str "1\n2\n"))
 
 (Given #"^the second player has picked a space on the board" []
   (swap! world update-in [:input]
-    str "0\n"))
+    str "5\n"))
 
 (Then #"^I expect to see a board with that space filled with the second players piece$" []
-  (should-contain "     |     |     |\n O   |  1  |  2  |    \n_____|_____|_____|\n     |     |     |\n X   |  4  |  5  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
+  (should-contain "     |     |     |\n 0   |  1  |  2  |    \n_____|_____|_____|\n     |     |     |\n X   |  4  |  O  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
     (last (@world :outputs))))

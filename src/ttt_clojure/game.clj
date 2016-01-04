@@ -50,11 +50,16 @@
 (defn start-game []
   (print instructions)
   (let [player1 (get-player-name)
-        turn-order-message (ask-player-for-turn-order player1)
         player1-piece (get-player-piece)
-        turn-order (get-player-input turn-order-message valid-turn-order?)
         player2 (get-player-name)
+        player2-piece (opposite-piece player1-piece)
+        turn-order-message (ask-player-for-turn-order player1)
+        turn-order (get-player-input turn-order-message valid-turn-order?)
         first-player-name (first-player turn-order player1 player2)
+        second-player-name (second-player turn-order player1 player2)
         board empty-board]
   (print (board-formatter board))
-  (print (board-formatter (update-board board player1-piece (get-player-move first-player-name board))))))
+  (let [updated-board (update-board board player1-piece (get-player-move first-player-name board))]
+  (print (board-formatter updated-board))
+  (let [updated-board1 (update-board updated-board player2-piece (get-player-move second-player-name updated-board))]
+  (print (board-formatter updated-board1))))))

@@ -63,6 +63,7 @@ Feature: Game is set up properly
   Scenario: Placing a piece on an empty board
     Given the players have entered names and turn order
     And the first player has picked a space on the board
+    And the second player has picked a space on the board
     And the game has started
     Then I expect to see a board with that space filled
 
