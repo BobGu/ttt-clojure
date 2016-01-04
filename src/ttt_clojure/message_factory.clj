@@ -11,7 +11,7 @@
 
 (defn ask-player-for-turn-order [name]
   (str "Enter 1 if you would like " name " to go first and enter 2 if you would
-    like " name " to go second")) 
+    like " name " to go second"))
 
 (defn board-formatter [board]
   (str "     |     |     |\n "

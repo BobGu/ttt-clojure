@@ -85,3 +85,15 @@
 (Then #"^I expect to see an empty board$" []
   (should-contain "     |     |     |\n 0   |  1  |  2  |    \n_____|_____|_____|\n     |     |     |\n 3   |  4  |  5  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
     (last (@world :outputs))))
+
+(Given #"^the first player has picked a space on the board$" []
+  (swap! world update-in [:input]
+    str "3\n"))
+
+(Then #"^I expect to see a board with that space filled$" []
+  (should-contain "     |     |     |\n 0   |  1  |  2  |    \n_____|_____|_____|\n     |     |     |\n X   |  4  |  5  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
+    (last (@world :outputs))))
+
+(Given #"^I enter valid moves for the game$" []
+  (swap! world update-in [:input]
+    str "1\n"))
