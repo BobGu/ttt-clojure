@@ -27,7 +27,7 @@
 (def instructions
   (let [board [0 1 2 3 "X" 5 6 7 8]]
   (str "Welcome to tic tac toe!  When it is your turn choose a number from 0-8 as repersented on the board.
-  For example if I were the letter X and i chose the center space by typing in the number 4 then
+ For example if I were the letter X and i chose the center space by typing in the number 4 then
   the board would look like this.\n"
   (board-formatter board))))
 

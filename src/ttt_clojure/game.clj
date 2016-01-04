@@ -35,4 +35,5 @@
       (get-player-input turn-order-message valid-turn-order?)
       player1
       player2)]
+  (print (board-formatter empty-board)) 
   (print (ask-player-for-move first-player-name))))))

@@ -48,3 +48,7 @@ Feature: Game is set up properly
    And the game has started
    Then I expect the second player to be asked to choose a spot
 
+  Scenario: Seeing an empty board to start the game
+    Given the players have entered names and turn order
+    And the game has started
+    Then I expect to see an empty board

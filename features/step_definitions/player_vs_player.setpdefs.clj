@@ -23,7 +23,7 @@
     (last (@world :outputs))))
 
 (Then #"^I should be asked for my name$" []
-  (should-contain #"What is your name*" 
+  (should-contain #"What is your name*"
     (last (@world :outputs))))
 
 
@@ -80,4 +80,8 @@
 
 (Then #"^I expect the second player to be asked to choose a spot$" []
   (should-contain #"Where would you like to move bobby"
+    (last (@world :outputs))))
+
+(Then #"^I expect to see an empty board$" []
+  (should-contain "     |     |     |\n 0   |  1  |  2  |    \n_____|_____|_____|\n     |     |     |\n 3   |  4  |  5  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
     (last (@world :outputs))))
