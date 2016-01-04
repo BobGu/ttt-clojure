@@ -19,9 +19,11 @@
 
 (defn start-game []
   (print instructions)
-  (get-player-input ask-player-for-name valid-name?)
+  (let [first-player-name (get-player-input ask-player-for-name valid-name?)
+        turn-order-message (ask-player-for-turn-order first-player-name)]
   (get-player-input ask-player-for-piece valid-piece?)
-  (get-player-input ask-player-for-name valid-turn-order?))
+  (get-player-input ask-player-for-name valid-name?)
+  (get-player-input turn-order-message valid-turn-order?)))
 ;if not valid asks again
 ;Game asks for second players name
   ;First player is prompted to go, board is shown
