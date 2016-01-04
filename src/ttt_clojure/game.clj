@@ -37,6 +37,11 @@
        (print (invalid-input move))
        (get-player-move player-name board)))))
 
+(defn opposite-piece [piece]
+  (if (= "X" piece)
+    "O"
+    "X"))
+
 (defn start-game []
   (print instructions)
   (let [player1 (get-player-name)

@@ -76,3 +76,8 @@
   (it "returns the second player to move in the game"
     (should= "John"
       (first-player "2" "Robert" "John"))))
+
+(describe "opposite-piece"
+  (it "returns the opposite piece" 
+    (should= "O"
+      (opposite-piece "X"))))
