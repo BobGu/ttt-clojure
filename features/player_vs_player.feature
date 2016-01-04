@@ -34,3 +34,8 @@ Feature: Game is set up properly
     And I enter which player goes first
     And the game has started
     Then I expect to be asked which player should go first
+
+  Scenario: Player gets asked to place a piece when it is their turn
+    Given the players have entered names and turn order
+    And the game has started
+    Then I expect the first player is asked to choose a spot on the board 

@@ -16,7 +16,7 @@
   (swap! world update-in [:outputs]
     conj (str (with-out-str (with-in-str (@world :input)(start-game)))))
   (reset! world {:outputs (@world :outputs)
-                  :input ""}))
+                 :input ""}))
 
 (Then #"^I should see instructions on how to play the game$" []
   (should-contain #"Welcome to tic tac toe"
@@ -64,4 +64,12 @@
 
 (Then #"^I expect to be asked which player should go first$" []
   (should-contain #"you would like john*"
+    (last (@world :outputs))))
+
+(Given #"^the players have entered names and turn order$" []
+  (swap! world update-in [:input]
+    str "john\nx\nbobby\n1\n"))
+
+(Then #"^I expect the first player is asked to choose a spot on the board$" []
+  (should-contain #"Where would you like to move john"
     (last (@world :outputs))))

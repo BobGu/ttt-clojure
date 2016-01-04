@@ -10,3 +10,6 @@
 
 (defn valid-turn-order? [input]
   (or (= input "1") (= input "2")))
+
+(defn valid-move? [space board]
+  (some #(= (read-string space) %) board))

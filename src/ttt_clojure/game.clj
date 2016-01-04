@@ -23,15 +23,5 @@
         turn-order-message (ask-player-for-turn-order first-player-name)]
   (get-player-input ask-player-for-piece valid-piece?)
   (get-player-input ask-player-for-name valid-name?)
-  (get-player-input turn-order-message valid-turn-order?)))
-;if not valid asks again
-;Game asks for second players name
-  ;First player is prompted to go, board is shown
-  ;Get players input
-  ;Check if that spot is available
-  ;updates board with that spot and piece
-  ;if game is won or tied game is over, exit out
-  ;second player is shown board
-  ;moves in a spot, if spot is available
-  ;updates board with that spot and piece
-  ;if game is won or tied game is over, exit out
+  (get-player-input turn-order-message valid-turn-order?)
+  (print (ask-player-for-move first-player-name))))
