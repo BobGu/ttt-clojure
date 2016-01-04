@@ -69,15 +69,23 @@
 
 
 (describe "first-player"
-  (it "returns the first player in to move in the game"
+  (it "returns the first player to move in the game"
     (should= "Robert"
       (first-player "1" "Robert" "John")))
 
-  (it "returns the second player to move in the game"
+  (it "returns the first player to move in the game"
     (should= "John"
       (first-player "2" "Robert" "John"))))
 
 (describe "opposite-piece"
-  (it "returns the opposite piece" 
+  (it "returns the opposite piece"
     (should= "O"
       (opposite-piece "X"))))
+
+(describe "second-player"
+  (it "returns the second player to move in the game"
+    (should= "Josh Cheek"
+      (second-player "1" "Robert" "Josh Cheek")))
+  (it "returns the second player to move in the game"
+   (should= "Robert" 
+    (second-player "2" "Robert" "Josh Cheeck"))))

@@ -23,6 +23,11 @@
     player1-name
     player2-name))
 
+(defn second-player [turn-order player1-name player2-name]
+  (if (= "2" turn-order)
+    player1-name
+    player2-name))
+
 (defn get-player-name[]
   (get-player-input ask-player-for-name valid-name?))
 
@@ -46,14 +51,10 @@
   (print instructions)
   (let [player1 (get-player-name)
         turn-order-message (ask-player-for-turn-order player1)
-        player1-piece (get-player-piece)]
-  (let [player2 (get-player-name)]
-  (let
-    [first-player-name
-    (first-player
-      (get-player-input turn-order-message valid-turn-order?)
-      player1
-      player2)
-     board empty-board]
+        player1-piece (get-player-piece)
+        turn-order (get-player-input turn-order-message valid-turn-order?)
+        player2 (get-player-name)
+        first-player-name (first-player turn-order player1 player2)
+        board empty-board]
   (print (board-formatter board))
-  (print (board-formatter (update-board board player1-piece (get-player-move first-player-name board))))))))
+  (print (board-formatter (update-board board player1-piece (get-player-move first-player-name board))))))
