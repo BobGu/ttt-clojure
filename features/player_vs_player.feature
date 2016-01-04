@@ -38,4 +38,13 @@ Feature: Game is set up properly
   Scenario: Player gets asked to place a piece when it is their turn
     Given the players have entered names and turn order
     And the game has started
-    Then I expect the first player is asked to choose a spot on the board 
+    Then I expect the first player is asked to choose a spot on the board
+
+  Scenario: When first player to enter their name chooses to go second, second
+            player who enters their name gets asked first to pick a piece on the
+            board.
+   Given the game is setup with players information
+   And I pick the first player to enter their name to go second
+   And the game has started
+   Then I expect the second player to be asked to choose a spot
+

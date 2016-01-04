@@ -73,3 +73,11 @@
 (Then #"^I expect the first player is asked to choose a spot on the board$" []
   (should-contain #"Where would you like to move john"
     (last (@world :outputs))))
+
+(Given #"^I pick the first player to enter their name to go second$" []
+  (swap! world update-in [:input]
+    str "2\n"))
+
+(Then #"^I expect the second player to be asked to choose a spot$" []
+  (should-contain #"Where would you like to move bobby"
+    (last (@world :outputs))))

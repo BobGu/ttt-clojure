@@ -67,3 +67,12 @@
       (with-in-str "1"
         (get-player-input ask-player-for-turn-order valid-turn-order?)))))
 
+
+(describe "first-player"
+  (it "returns the first player in to move in the game"
+    (should= "Robert"
+      (first-player "1" "Robert" "John")))
+
+  (it "returns the second player to move in the game"
+    (should= "John"
+      (first-player "2" "Robert" "John"))))

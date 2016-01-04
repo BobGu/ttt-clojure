@@ -17,11 +17,22 @@
        (print (invalid-input input))
        (get-player-input message validator)))))
 
+(defn first-player [turn-order player1-name player2-name]
+  (if (= "1" turn-order)
+    player1-name
+    player2-name))
+
+
 (defn start-game []
   (print instructions)
-  (let [first-player-name (get-player-input ask-player-for-name valid-name?)
-        turn-order-message (ask-player-for-turn-order first-player-name)]
+  (let [player1 (get-player-input ask-player-for-name valid-name?)
+        turn-order-message (ask-player-for-turn-order player1)]
   (get-player-input ask-player-for-piece valid-piece?)
-  (get-player-input ask-player-for-name valid-name?)
-  (get-player-input turn-order-message valid-turn-order?)
-  (print (ask-player-for-move first-player-name))))
+  (let [player2 (get-player-input ask-player-for-name valid-name?)]
+  (let
+    [first-player-name
+    (first-player
+      (get-player-input turn-order-message valid-turn-order?)
+      player1
+      player2)]
+  (print (ask-player-for-move first-player-name))))))
