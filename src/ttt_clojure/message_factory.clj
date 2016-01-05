@@ -33,3 +33,6 @@
 
 (defn invalid-input [input]
   (str input " is not a valid input" ))
+
+(defn winner-message [name]
+  (str "Congratulations " name " you have won the game!!"))

@@ -62,28 +62,32 @@ Feature: Game is set up properly
 
   Scenario: Placing a piece on an empty board
     Given the players have entered names and turn order
-    And the first player has picked a space on the board
-    And the second player has picked a space on the board
+    And the first player has picked the top left space on the board
+    And the second player has picked the center space on the board
+    And the players continue to move until someone has won the game
     And the game has started
-    Then I expect to see a board with that space filled
+    Then I expect to see the top left space filled by the first players piece
 
   Scenario: Second player placing a piece on the board
     Given the players have entered names and turn order
-    And the first player has picked a space on the board
-    And the second player has picked a space on the board
+    And the first player has picked the top left space on the board
+    And the second player has picked the center space on the board
+    And the players continue to move until someone has won the game
     And the game has started
-    Then I expect to see a board with that space filled with the second players piece
+    Then I expect to see the center square filled with the second players piece
 
   Scenario: Pieces are assigned to the right players
     Given the player that enters their name first chooses to be the letter X
     And that player chooses to go 2nd
-    And the other player chooses a space on the board
-    And the second player has picked a space on the board
+    And the first player has picked the top left space on the board
+    And the second player has picked the center space on the board
+    And the players continue to move until someone has won the game
     And the game has started
-    Then I expect to see a board with the correct spaces filled
+    Then I expect the top left space to be filled by the letter O
 
   Scenario: Game is won by the first player
     Given the players have entered names and turn order
     And they have moved a few times each
     And the first player makes a winning move
+    And the game has started
     Then I expect to see a message congratulating that player on winning the game

@@ -74,4 +74,4 @@
         first-player-piece (first-player turn-order player1-piece player2-piece)
         second-player-piece(second-player turn-order player1-piece player2-piece)
         board empty-board]
-  (moves board first-player-piece first-player-name second-player-name)))
+  (print (winner-message (moves board first-player-piece first-player-name second-player-name)))))

@@ -28,3 +28,8 @@
 (describe "invalid-input"
   (it "gives a generic message about input being invalid"
     (should-contain #"superdooperinvalidmessage is not a valid input*" (invalid-input "superdooperinvalidmessage"))))
+
+(describe "winner-message"
+  (it "tells a player that they've won the game"
+    (should-contain #"Congratulations Robert you have won the game*"
+      (winner-message "Robert"))))

@@ -86,9 +86,9 @@
   (should-contain "     |     |     |\n 0   |  1  |  2  |    \n_____|_____|_____|\n     |     |     |\n 3   |  4  |  5  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
     (last (@world :outputs))))
 
-(Given #"^the first player has picked a space on the board$" []
+(Given #"^the first player has picked the top left space on the board$" []
   (swap! world update-in [:input]
-    str "3\n"))
+    str "0\n"))
 
 (Then #"^I expect to see a board with that space filled$" []
   (should-contain "     |     |     |\n 0   |  1  |  2  |    \n_____|_____|_____|\n     |     |     |\n X   |  4  |  O  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
@@ -96,14 +96,22 @@
 
 (Given #"^I enter valid moves for the game$" []
   (swap! world update-in [:input]
-    str "1\n2\n"))
+    str "0\n3\n1\n4\n2\n"))
 
-(Given #"^the second player has picked a space on the board" []
+(Given #"^the second player has picked the center space on the board$" []
   (swap! world update-in [:input]
-    str "5\n"))
+    str "4\n"))
 
-(Then #"^I expect to see a board with that space filled with the second players piece$" []
-  (should-contain "     |     |     |\n 0   |  1  |  2  |    \n_____|_____|_____|\n     |     |     |\n X   |  4  |  O  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
+(Given #"^the players continue to move until someone has won the game$" []
+  (swap! world update-in [:input]
+    str "1\n3\n2\n"))
+
+(Then #"^I expect to see the center square filled with the second players piece$" []
+  (should-contain"     |     |     |\n X   |  X  |  X  |    \n_____|_____|_____|\n     |     |     |\n O   |  O  |  5  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
+    (last (@world :outputs))))
+
+(Then #"^I expect to see the top left space filled by the first players piece$" []
+  (should-contain "     |     |     |\n X   |  X  |  X  |    \n_____|_____|_____|\n     |     |     |\n O   |  O  |  5  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
     (last (@world :outputs))))
 
 (Given #"^the player that enters their name first chooses to be the letter X$" []
@@ -118,18 +126,18 @@
   (swap! world update-in [:input]
     str "4\n"))
 
-(Then #"^I expect to see a board with the correct spaces filled$" [] 
-  (should-contain "     |     |     |\n 0   |  1  |  2  |    \n_____|_____|_____|\n     |     |     |\n 3   |  O  |  X  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
-    (last (@world :outputs))))
-
 (Given #"^they have moved a few times each$" []
   (swap! world update-in [:input]
-    str "0\n3\n\1\n\4\n"))
+    str "0\n3\n1\n4\n"))
 
 (Given #"^the first player makes a winning move" []
   (swap! world update-in [:input]
     str "2\n"))
 
 (Then #"^I expect to see a message congratulating that player on winning the game$" []
-  (should-contain #"Congratulations Robert you have won the game*"
+  (should-contain #"Congratulations john you have won the game*"
+    (last (@world :outputs))))
+
+(Then #"^I expect the top left space to be filled by the letter O$" []
+  (should-contain "     |     |     |\n O   |  O  |  O  |    \n_____|_____|_____|\n     |     |     |\n X   |  X  |  5  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
     (last (@world :outputs))))
