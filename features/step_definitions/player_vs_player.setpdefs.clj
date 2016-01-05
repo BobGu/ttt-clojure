@@ -121,3 +121,15 @@
 (Then #"^I expect to see a board with the correct spaces filled$" [] 
   (should-contain "     |     |     |\n 0   |  1  |  2  |    \n_____|_____|_____|\n     |     |     |\n 3   |  O  |  X  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
     (last (@world :outputs))))
+
+(Given #"^they have moved a few times each$" []
+  (swap! world update-in [:input]
+    str "0\n3\n\1\n\4\n"))
+
+(Given #"^the first player makes a winning move" []
+  (swap! world update-in [:input]
+    str "2\n"))
+
+(Then #"^I expect to see a message congratulating that player on winning the game$" []
+  (should-contain #"Congratulations Robert you have won the game*"
+    (last (@world :outputs))))

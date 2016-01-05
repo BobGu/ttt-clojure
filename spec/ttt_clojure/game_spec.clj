@@ -87,5 +87,11 @@
     (should= "Josh Cheek"
       (second-player "1" "Robert" "Josh Cheek")))
   (it "returns the second player to move in the game"
-   (should= "Robert" 
+   (should= "Robert"
     (second-player "2" "Robert" "Josh Cheeck"))))
+
+(describe "moves"
+
+  (it "returns the players name that won the game"
+    (should= "Turtle"
+      (with-in-str "2\n" (moves ["X" "X" 2 "O" "O" 5 6 7 8] "X" "Turtle" "Hare")))))

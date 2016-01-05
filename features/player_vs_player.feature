@@ -81,3 +81,9 @@ Feature: Game is set up properly
     And the second player has picked a space on the board
     And the game has started
     Then I expect to see a board with the correct spaces filled
+
+  Scenario: Game is won by the first player
+    Given the players have entered names and turn order
+    And they have moved a few times each
+    And the first player makes a winning move
+    Then I expect to see a message congratulating that player on winning the game

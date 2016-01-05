@@ -47,6 +47,17 @@
     "O"
     "X"))
 
+(defn moves [board player-piece player-name other-player-name]
+  (print (board-formatter board))
+  (if-not (game-won? board)
+    (do
+      (let [board (update-board board player-piece (get-player-move player-name board))
+            player-piece (opposite-piece player-piece)
+            name other-player-name
+            other-player-name player-name]
+      (moves board player-piece name other-player-name)))
+    other-player-name))
+
 (defn start-game []
   (print instructions)
   (let [player1 (get-player-name)
@@ -60,8 +71,4 @@
         first-player-piece (first-player turn-order player1-piece player2-piece)
         second-player-piece(second-player turn-order player1-piece player2-piece)
         board empty-board]
-  (print (board-formatter board))
-  (let [updated-board (update-board board first-player-piece (get-player-move first-player-name board))]
-  (print (board-formatter updated-board))
-  (let [updated-board1 (update-board updated-board second-player-piece (get-player-move second-player-name updated-board))]
-  (print (board-formatter updated-board1))))))
+  (moves board first-player-piece first-player-name second-player-name)))
