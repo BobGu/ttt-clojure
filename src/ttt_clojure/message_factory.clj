@@ -1,4 +1,5 @@
 (ns ttt-clojure.message-factory)
+(require '[colorize.ansi :refer [colorize]])
 
 (defn ask-player-for-move [name]
   (str "Where would you like to move " name "?"))
