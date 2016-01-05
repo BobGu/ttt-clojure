@@ -78,3 +78,6 @@
         second-player-piece(second-player turn-order player1-piece player2-piece)
         board empty-board]
   (print (moves board first-player-piece first-player-name second-player-name))))
+
+(defn -main []
+  (start-game))

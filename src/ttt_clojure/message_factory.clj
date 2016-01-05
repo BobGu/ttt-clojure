@@ -1,18 +1,18 @@
-(ns ttt-clojure.message-factory)
-(require '[colorize.ansi :refer [colorize]])
+(ns ttt-clojure.message-factory
+  (:require [ttt-clojure.color :refer :all]))
 
 (defn ask-player-for-move [name]
-  (str "Where would you like to move " name "?"))
+  (green (str "Where would you like to move " name "?")))
 
 (def ask-player-for-name
-  "What is your name?")
+  (green "What is your name?"))
 
 (def ask-player-for-piece
-  "What piece would you like to be?  Please type in X or O")
+  (green "What piece would you like to be?  Please type in X or O"))
 
 (defn ask-player-for-turn-order [name]
-  (str "Enter 1 if you would like " name " to go first and enter 2 if you would
-    like " name " to go second"))
+  (green (str "Enter 1 if you would like " name " to go first and enter 2 if you would
+    like " name " to go second")))
 
 (defn board-formatter [board]
   (str "     |     |     |\n "
@@ -25,18 +25,21 @@
   (nth board 6)"   |  "(nth board 7)"  |  "(nth board 8)"  |    \n"
   "_____|_____|_____|\n"))
 
+(def welcome
+  (yellow "Welcome to tic tac toe!  When it is your turn choose a number from 0-8 as repersented on the board.
+  For example if I were the letter X and i chose the center space by typing in the number 4 then
+  the board would look like this.\n"))
+
 (def instructions
   (let [board [0 1 2 3 "X" 5 6 7 8]]
-  (str "Welcome to tic tac toe!  When it is your turn choose a number from 0-8 as repersented on the board.
- For example if I were the letter X and i chose the center space by typing in the number 4 then
-  the board would look like this.\n"
-  (board-formatter board))))
+  welcome
+  (board-formatter board)))
 
 (defn invalid-input [input]
-  (str input " is not a valid input" ))
+  (red (str input " is not a valid input" )))
 
 (defn winner-message [name]
-  (str "Congratulations " name " you have won the game!!"))
+  (green (str "Congratulations " name " you have won the game!!")))
 
 (def tie-message
-  "The game is a tie.  A strange game.  The only winning move is not to play.")
+  (yellow "The game is a tie.  A strange game.  The only winning move is not to play."))
