@@ -91,7 +91,15 @@
     (second-player "2" "Robert" "Josh Cheeck"))))
 
 (describe "moves"
+  (around [it]
+    (with-out-str (it)))
 
   (it "returns the players name that won the game"
     (should= "Turtle"
       (with-in-str "2\n" (moves ["X" "X" 2 "O" "O" 5 6 7 8] "X" "Turtle" "Hare")))))
+
+(describe "game-tied?"
+  (it "returns true if the game is tied and there are no empty spaces left"
+   (should (game-tied? ["X" "O" "X"
+                        "O" "O" "X"
+                        "X" "X" "O"]))))

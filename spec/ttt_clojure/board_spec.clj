@@ -59,3 +59,12 @@
 
   (it "should return false given mostly one piece and one of the opposing piece"
   (should-not (all-spaces-the-same? ["X" "O" "X"]))))
+
+(describe "spaces-available?"
+  (it "returns true if there are any spaces available"
+    (should (spaces-available? ["X" "X" "O" 3 4 5 6 "O" "X"])))
+
+ (it "returns false if no spaces are available"
+  (should-not (spaces-available? ["X" "X" "O"
+                                      "O" "O" "X"
+                                      "O" "O" "X"]))))

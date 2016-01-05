@@ -8,6 +8,9 @@
   (let [possible-wins (possible-wins board)]
   (some true? (map #(all-spaces-the-same? %) possible-wins))))
 
+(defn game-tied? [board]
+  (= (not (game-won? board)) (not (spaces-available? board))))
+
 (defn get-player-input [message validator ]
   (let [input (prompt message)
         valid-input validator
