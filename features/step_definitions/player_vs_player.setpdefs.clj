@@ -105,3 +105,19 @@
 (Then #"^I expect to see a board with that space filled with the second players piece$" []
   (should-contain "     |     |     |\n 0   |  1  |  2  |    \n_____|_____|_____|\n     |     |     |\n X   |  4  |  O  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
     (last (@world :outputs))))
+
+(Given #"^the player that enters their name first chooses to be the letter X$" []
+  (swap! world update-in [:input]
+    str "Robert\nx\nJohn\n"))
+
+(Given #"^that player chooses to go 2nd$" []
+  (swap! world update-in [:input]
+    str "2\n"))
+
+(Given #"^the other player chooses a space on the board$" []
+  (swap! world update-in [:input]
+    str "4\n"))
+
+(Then #"^I expect to see a board with the correct spaces filled$" [] 
+  (should-contain "     |     |     |\n 0   |  1  |  2  |    \n_____|_____|_____|\n     |     |     |\n 3   |  O  |  X  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
+    (last (@world :outputs))))

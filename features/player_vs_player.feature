@@ -74,3 +74,10 @@ Feature: Game is set up properly
     And the game has started
     Then I expect to see a board with that space filled with the second players piece
 
+  Scenario: Pieces are assigned to the right players
+    Given the player that enters their name first chooses to be the letter X
+    And that player chooses to go 2nd
+    And the other player chooses a space on the board
+    And the second player has picked a space on the board
+    And the game has started
+    Then I expect to see a board with the correct spaces filled

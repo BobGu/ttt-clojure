@@ -57,9 +57,11 @@
         turn-order (get-player-input turn-order-message valid-turn-order?)
         first-player-name (first-player turn-order player1 player2)
         second-player-name (second-player turn-order player1 player2)
+        first-player-piece (first-player turn-order player1-piece player2-piece)
+        second-player-piece(second-player turn-order player1-piece player2-piece)
         board empty-board]
   (print (board-formatter board))
-  (let [updated-board (update-board board player1-piece (get-player-move first-player-name board))]
+  (let [updated-board (update-board board first-player-piece (get-player-move first-player-name board))]
   (print (board-formatter updated-board))
-  (let [updated-board1 (update-board updated-board player2-piece (get-player-move second-player-name updated-board))]
+  (let [updated-board1 (update-board updated-board second-player-piece (get-player-move second-player-name updated-board))]
   (print (board-formatter updated-board1))))))
