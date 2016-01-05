@@ -36,3 +36,6 @@
 
 (defn winner-message [name]
   (str "Congratulations " name " you have won the game!!"))
+
+(def tie-message
+  "The game is a tie.  A strange game.  The only winning move is not to play.")

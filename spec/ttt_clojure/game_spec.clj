@@ -94,8 +94,8 @@
   (around [it]
     (with-out-str (it)))
 
-  (it "returns the players name that won the game"
-    (should= "Turtle"
+  (it "returns the winner of the game if game is won"
+    (should-contain "Turtle"
       (with-in-str "2\n" (moves ["X" "X" 2 "O" "O" 5 6 7 8] "X" "Turtle" "Hare")))))
 
 (describe "game-tied?"

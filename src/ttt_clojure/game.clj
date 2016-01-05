@@ -11,7 +11,7 @@
 (defn game-tied? [board]
   (= (not (game-won? board)) (not (spaces-available? board))))
 
-(defn get-player-input [message validator ]
+(defn get-player-input [message validator]
   (let [input (prompt message)
         valid-input validator
         ]
@@ -50,16 +50,19 @@
     "O"
     "X"))
 
-(defn moves [board player-piece player-name other-player-name]
+(defn moves [board player-piece next-player-to-move last-player-to-move]
   (print (board-formatter board))
-  (if-not (game-won? board)
+  (if (or (game-won? board) (game-tied? board))
+    (if (game-won? board)
+      (winner-message last-player-to-move)
+      tie-message)
     (do
-      (let [board (update-board board player-piece (get-player-move player-name board))
+      (let [board (update-board board player-piece (get-player-move next-player-to-move board))
             player-piece (opposite-piece player-piece)
-            name other-player-name
-            other-player-name player-name]
-      (moves board player-piece name other-player-name)))
-    other-player-name))
+            next-player last-player-to-move
+            last-player next-player-to-move]
+      (moves board player-piece next-player last-player)))))
+
 
 (defn start-game []
   (print instructions)
@@ -74,4 +77,4 @@
         first-player-piece (first-player turn-order player1-piece player2-piece)
         second-player-piece(second-player turn-order player1-piece player2-piece)
         board empty-board]
-  (print (winner-message (moves board first-player-piece first-player-name second-player-name)))))
+  (print (moves board first-player-piece first-player-name second-player-name))))

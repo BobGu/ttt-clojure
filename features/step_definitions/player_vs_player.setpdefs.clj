@@ -141,3 +141,12 @@
 (Then #"^I expect the top left space to be filled by the letter O$" []
   (should-contain "     |     |     |\n O   |  O  |  O  |    \n_____|_____|_____|\n     |     |     |\n X   |  X  |  5  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
     (last (@world :outputs))))
+
+(Given #"^they each play pieces until the board is filled$" []
+  (swap! world update-in [:input]
+    str "1\n0\n3\n2\n5\n4\n6\n7\n8\n"))
+
+(Then #"^I expect to see a message telling me the game ended in a tie$" []
+  (should-contain #"The game is a tie*"
+    (last (@world :outputs))))
+

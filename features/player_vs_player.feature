@@ -91,3 +91,9 @@ Feature: Game is set up properly
     And the first player makes a winning move
     And the game has started
     Then I expect to see a message congratulating that player on winning the game
+
+  Scenario: Game is a cats
+    Given the players have entered names and turn order
+    And they each play pieces until the board is filled
+    And the game has started
+    Then I expect to see a message telling me the game ended in a tie

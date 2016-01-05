@@ -1,6 +1,9 @@
 (ns ttt-clojure.validate-input)
 (use 'clojure.string)
 
+(defn parse-int [s]
+  (Integer/parseInt (re-find #"\A-?\d+" s)))
+
 (defn valid-name? [name]
   (= true (> (count name) 0) (< (count name) 26)))
 
@@ -12,4 +15,4 @@
   (or (= input "1") (= input "2")))
 
 (defn valid-move? [space board]
-  (some #(= (read-string space) %) board))
+  (some #(= (parse-int space) %) board))

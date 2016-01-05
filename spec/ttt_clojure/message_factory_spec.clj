@@ -33,3 +33,8 @@
   (it "tells a player that they've won the game"
     (should-contain #"Congratulations Robert you have won the game*"
       (winner-message "Robert"))))
+
+(describe "tie-message"
+  (it "tells players that the game has ended in a tie"
+    (should-contain #"The game is a tie*"
+      tie-message)))
