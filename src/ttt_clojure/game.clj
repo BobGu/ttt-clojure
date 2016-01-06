@@ -38,7 +38,7 @@
 
 (defn get-player-move [player-name board]
   (let [move (prompt (ask-player-for-move player-name))]
-    (if (valid-move? move board )
+    (if (valid-move? move board)
       (read-string move)
      (do
        (print (invalid-input move))
