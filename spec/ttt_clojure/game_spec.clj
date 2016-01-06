@@ -69,13 +69,18 @@
 
 
 (describe "first-player"
-  (it "returns the first player to move in the game"
+  (it "returns the first players info given a turn order"
     (should= "Robert"
       (first-player "1" "Robert" "John")))
 
   (it "returns the first player to move in the game"
     (should= "John"
-      (first-player "2" "Robert" "John"))))
+      (first-player "2" "Robert" "John")))
+
+  (it "returns the  first players piece to move in a game"i
+    (should= "X"
+      (first-player "1" "X" "O")))
+
 
 (describe "opposite-piece"
   (it "returns the opposite piece"
