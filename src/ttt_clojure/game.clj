@@ -5,8 +5,7 @@
             [ttt-clojure.input :refer :all]))
 
 (defn game-won? [board]
-  (let [possible-wins (possible-wins board)]
-  (some true? (map #(all-spaces-the-same? %) possible-wins))))
+  (some true? (map #(all-spaces-the-same? %) (possible-wins board))))
 
 (defn game-tied? [board]
   (= (not (game-won? board)) (not (spaces-available? board))))
