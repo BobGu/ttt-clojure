@@ -8,7 +8,7 @@
   (some true? (map #(all-spaces-the-same? %) (possible-wins board))))
 
 (defn game-tied? [board]
-  (= (not (game-won? board)) (not (spaces-available? board))))
+  (and (not (game-won? board)) (not (spaces-available? board))))
 
 (defn first-player [turn-order player1-info player2-info]
   (if (= "1" turn-order)

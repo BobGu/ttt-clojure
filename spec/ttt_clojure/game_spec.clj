@@ -112,4 +112,9 @@
   (it "returns false if the game is not tied and there are no empty spaces left"
     (should-not (game-tied? ["X" "X" "X"
                              "O" "O" "X"
-                             "O" "X" "O"]))))
+                             "O" "X" "O"])))
+
+  (it "returns false if the game is not won and all the spaces are not filled"
+    (should-not (game-tied? ["X" "O" "X"
+                             "O" "X" "O"
+                             "X" "O" 8]))))
