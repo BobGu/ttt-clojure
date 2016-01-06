@@ -23,3 +23,10 @@
   (it "returns false if it is not possible to get three in a row piece"
     (should-not (three-in-a-row-possible? "O" ["O" "X" "O"]))))
 
+(describe "find-winning-set"
+  (it "returns the winning set"
+    (should= ["O" "O" 2]
+      (find-winning-set "O" ["O" "O" 2
+                         "X" "X" 5
+                         "O" "X" 8]))))
+
