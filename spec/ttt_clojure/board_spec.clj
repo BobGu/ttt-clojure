@@ -1,6 +1,7 @@
 (ns ttt-clojure.board-spec
   (:require [speclj.core :refer :all]
-            [ttt-clojure.board :refer :all]))
+            [ttt-clojure.board :refer :all]
+            [ttt-clojure.spec-helper :refer :all]))
 
 (describe "empty board"
   (it "creates an empty 3x3 board"
@@ -41,13 +42,13 @@
 (describe "diagonals"
   (it "should return the diagonals given and empty board"
   (let [diagonals (diagonals empty-board)]
-  (should (every? (fn [x] (some #(= x %) diagonals)) ['(2 4 6) '(0 4 8)])))))
+  (should (contains-all? diagonals  ['(2 4 6) '(0 4 8)])))))
 
 (describe "possible-wins"
   (it "should return the rows and columns and digaonals from a board"
   (let [expected-results [[0 1 2] [3 4 5] [6 7 8] [0 3 6] [1 4 7] [2 5 8] [0 4 8] [2 4 6] [0 4 8] [2 4 6]]
    possible-wins (possible-wins empty-board)]
-   (should (every? (fn [x] (some #(= x %) possible-wins)) expected-results)))))
+   (should (contains-all? possible-wins expected-results)))))
 
 (describe "all spaces the same?"
   (it "returns true if all spaces are the same"
