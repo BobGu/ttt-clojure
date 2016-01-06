@@ -48,18 +48,19 @@
   (if (= "X" piece) "O" "X"))
 
 (defn moves [board player-piece next-player-to-move last-player-to-move]
+  (loop [board board
+         player-piece player-piece
+         next-player-to-move next-player-to-move
+         last-player-to-move last-player-to-move]
   (print (board-formatter board))
   (if (or (game-won? board) (game-tied? board))
     (if (game-won? board)
       (winner-message last-player-to-move)
       tie-message)
-    (do
-      (let [board (update-board board player-piece (get-player-move next-player-to-move board))
-            player-piece (opposite-piece player-piece)
-            next-player last-player-to-move
-            last-player next-player-to-move]
-      (moves board player-piece next-player last-player)))))
-
+    (recur (update-board board player-piece (get-player-move next-player-to-move board))
+           (opposite-piece player-piece)
+           last-player-to-move
+           next-player-to-move))))
 
 (defn start-game []
   (print instructions)
