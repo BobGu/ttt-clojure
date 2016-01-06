@@ -69,7 +69,7 @@
 
 
 (describe "first-player"
-  (it "returns the first players info given a turn order"
+  (it "returns the first player to move in a game"
     (should= "Robert"
       (first-player "1" "Robert" "John")))
 
@@ -77,9 +77,9 @@
     (should= "John"
       (first-player "2" "Robert" "John")))
 
-  (it "returns the  first players piece to move in a game"i
+  (it "returns the first players piece to move in a game"
     (should= "X"
-      (first-player "1" "X" "O")))
+      (first-player "1" "X" "O"))))
 
 
 (describe "opposite-piece"
@@ -107,4 +107,9 @@
   (it "returns true if the game is tied and there are no empty spaces left"
    (should (game-tied? ["X" "O" "X"
                         "O" "O" "X"
-                        "X" "X" "O"]))))
+                        "X" "X" "O"])))
+
+  (it "returns false if the game is not tied and there are no empty spaces left"
+    (should-not (game-tied? ["X" "X" "X"
+                             "O" "O" "X"
+                             "O" "X" "O"]))))
