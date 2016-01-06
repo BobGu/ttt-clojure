@@ -10,15 +10,6 @@
 (defn game-tied? [board]
   (= (not (game-won? board)) (not (spaces-available? board))))
 
-(defn get-player-input [message validator]
-  (let [input (prompt message)
-        valid-input validator]
-    (if (valid-input input)
-     input
-     (do
-       (print (invalid-input input))
-       (get-player-input message validator)))))
-
 (defn first-player [turn-order player1-name player2-name]
   (if (= "1" turn-order)
     player1-name
@@ -29,16 +20,28 @@
     player1-name
     player2-name))
 
-(defn get-player-name[]
+(defn get-player-input [message validator]
+  (let [input (prompt message)
+        valid-input validator]
+    (if (valid-input input)
+     input
+     (do
+       (print (invalid-input input))
+       (get-player-input message validator)))))
+
+(defn get-player-name []
   (get-player-input ask-player-for-name valid-name?))
 
 (defn get-player-piece []
   (clojure.string/upper-case (get-player-input ask-player-for-piece valid-piece?)))
 
+(defn parse-int [s]
+  (Integer/parseInt (re-find #"\A-?\d+" s)))
+
 (defn get-player-move [player-name board]
-  (let [move (prompt (ask-player-for-move player-name))]
+  (let [move (parse-int (prompt (ask-player-for-move player-name)))]
     (if (valid-move? move board)
-      (read-string move)
+      move
      (do
        (print (invalid-input move))
        (get-player-move player-name board)))))
