@@ -13,7 +13,7 @@
     (should= ["X" 1 2 3 4 5 6 7 8]
     (update-board empty-board "X" 0)))
 
-  (it "returns correctly updated board given an O and posiion 8"
+  (it "returns correctly updated board given an O and position 8"
     (should= [0 1 2 3 4 5 6 7 "O"]
     (update-board [0 1 2 3 4 5 6 7 "O"] "O" 8))))
 
