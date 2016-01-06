@@ -45,9 +45,7 @@
        (get-player-move player-name board)))))
 
 (defn opposite-piece [piece]
-  (if (= "X" piece)
-    "O"
-    "X"))
+  (if (= "X" piece) "O" "X"))
 
 (defn moves [board player-piece next-player-to-move last-player-to-move]
   (print (board-formatter board))
@@ -73,9 +71,8 @@
         turn-order (get-player-input turn-order-message valid-turn-order?)
         first-player-name (first-player turn-order player1 player2)
         second-player-name (second-player turn-order player1 player2)
-        first-player-piece (first-player turn-order player1-piece player2-piece)
-        board empty-board]
-  (print (moves board first-player-piece first-player-name second-player-name))))
+        first-player-piece (first-player turn-order player1-piece player2-piece)]
+  (print (moves empty-board first-player-piece first-player-name second-player-name))))
 
 (defn -main []
   (start-game))
