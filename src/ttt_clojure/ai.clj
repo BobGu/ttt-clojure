@@ -1,12 +1,11 @@
 (ns ttt-clojure.ai
-  (:require [ttt-clojure.game :refer :all]))
-
-(defn bot-can-win? [piece board]
-  true
-  )
+  (:require [ttt-clojure.game :refer :all]
+            [ttt-clojure.board :refer :all]))
 
 (defn three-in-a-row-possible? [piece set]
   (and
     (not-any? #{(opposite-piece piece)} set)
     (= 2 (count (filterv #(= piece %) set)))))
 
+(defn can-win? [piece board]
+  (some true? (map #(three-in-a-row-possible? piece %)(possible-wins board))))

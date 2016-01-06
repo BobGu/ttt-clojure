@@ -2,11 +2,16 @@
   (:require [speclj.core :refer :all]
             [ttt-clojure.ai :refer :all]))
 
-(describe "bot-can-win?"
-  (it "return true if the bot can win the game"
-    (should (bot-can-win? "O" ["O" "O" 2
+(describe "can-win?"
+  (it "return true if a certain piece can win the game"
+    (should (can-win? "O" ["O" "O" 2
                               "X" "X" 5
-                               6   7  8]))))
+                               6   7  8])))
+
+  (it "returns false if a certain piece can not win the game"
+    (should-not (can-win? "O" ["O" "O" "X"
+                               "X" "X" "5"
+                               "O" "O" "X"]))))
 
 (describe "three-in-a-row-possible?"
   (it "returns true if it possible to get three of a particual piece in a row"
