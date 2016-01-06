@@ -5,13 +5,13 @@
   (green (str "Where would you like to move " name "?")))
 
 (def ask-player-for-name
-  (green "What is your name?"))
+  (yellow "What is your name?"))
 
 (def ask-player-for-piece
-  (green "What piece would you like to be?  Please type in X or O"))
+  (yellow "What piece would you like to be?  Please type in X or O"))
 
 (defn ask-player-for-turn-order [name]
-  (green (str "Enter 1 if you would like " name " to go first and enter 2 if you would
+  (yellow (str "Enter 1 if you would like " name " to go first and enter 2 if you would
     like " name " to go second")))
 
 (defn board-formatter [board]
@@ -26,14 +26,14 @@
   "_____|_____|_____|\n"))
 
 (def welcome
-  (yellow "Welcome to tic tac toe!  When it is your turn choose a number from 0-8 as repersented on the board.
+  (green "Welcome to tic tac toe!  When it is your turn choose a number from 0-8 as repersented on the board.
   For example if I were the letter X and i chose the center space by typing in the number 4 then
   the board would look like this.\n"))
 
 (def instructions
   (let [board [0 1 2 3 "X" 5 6 7 8]]
-  welcome
-  (board-formatter board)))
+  (str welcome
+  (board-formatter board))))
 
 (defn invalid-input [input]
   (red (str input " is not a valid input" )))

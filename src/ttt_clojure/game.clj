@@ -13,8 +13,7 @@
 
 (defn get-player-input [message validator]
   (let [input (prompt message)
-        valid-input validator
-        ]
+        valid-input validator]
     (if (valid-input input)
      input
      (do
@@ -75,7 +74,6 @@
         first-player-name (first-player turn-order player1 player2)
         second-player-name (second-player turn-order player1 player2)
         first-player-piece (first-player turn-order player1-piece player2-piece)
-        second-player-piece(second-player turn-order player1-piece player2-piece)
         board empty-board]
   (print (moves board first-player-piece first-player-name second-player-name))))
 
