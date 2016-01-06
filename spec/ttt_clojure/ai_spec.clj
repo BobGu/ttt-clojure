@@ -27,6 +27,13 @@
   (it "returns the winning set"
     (should= ["O" "O" 2]
       (find-winning-set "O" ["O" "O" 2
-                         "X" "X" 5
-                         "O" "X" 8]))))
+                             "X" "X" 5
+                             "O" "X" 8])))
+
+  (it "returns the winning set"
+    (should= ["X" "X" 8]
+      (find-winning-set "X" ["X"  1 "O"
+                             "O" "X" 5
+                             "O"  7  8]))))
+
 
