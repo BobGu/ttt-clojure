@@ -36,8 +36,8 @@
                              "O" "X" 5
                              "O"  7  8]))))
 
-(describe "find-winning-move"
-  (should= 8
-    (find-winning-move ["X" "X" 8])))
+;(describe "find-winning-move"
+;  (should= 8
+;    (find-winning-move ["X" "X" 8])))
 
 

@@ -10,6 +10,11 @@
 (defn game-tied? [board]
   (and (not (game-won? board)) (not (spaces-available? board))))
 
+(defn assign-turn-order [turn-order players-info]
+  (if (= turn-order "1")
+    players-info
+    (reverse players-info)))
+
 (defn first-player [turn-order player1-info player2-info]
   (if (= "1" turn-order)
     player1-info

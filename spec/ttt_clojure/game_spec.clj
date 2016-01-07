@@ -67,33 +67,19 @@
       (with-in-str "1"
         (get-player-input ask-player-for-turn-order valid-turn-order?)))))
 
+(describe "assign-turn-order"
+  (it "should reutrn the players info in the correct order"
+    (should= [{:Robert "X"} {:John "O"}]
+      (assign-turn-order "1" [{:Robert "X"} {:John "O"}])))
 
-(describe "first-player"
-  (it "returns the first player to move in a game"
-    (should= "Robert"
-      (first-player "1" "Robert" "John")))
-
-  (it "returns the first player to move in the game"
-    (should= "John"
-      (first-player "2" "Robert" "John")))
-
-  (it "returns the first players piece to move in a game"
-    (should= "X"
-      (first-player "1" "X" "O"))))
-
+  (it "should return the players info in the correct order"
+    (should= [{:John "O"} {:Robert "X"}]
+      (assign-turn-order "2" [{:Robert "X"} {:John "O"}]))))
 
 (describe "opposite-piece"
   (it "returns the opposite piece"
     (should= "O"
       (opposite-piece "X"))))
-
-(describe "second-player"
-  (it "returns the second player to move in the game"
-    (should= "Josh Cheek"
-      (second-player "1" "Robert" "Josh Cheek")))
-  (it "returns the second player to move in the game"
-   (should= "Robert"
-    (second-player "2" "Robert" "Josh Cheeck"))))
 
 (describe "moves"
   (around [it]
