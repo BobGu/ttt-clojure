@@ -30,11 +30,9 @@
 (defn get-player-piece []
   (clojure.string/upper-case (get-player-input ask-player-for-piece valid-piece?)))
 
-(defn parse-int [s]
-  (Integer/parseInt (re-find #"\A-?\d+" s)))
 
 (defn get-player-move [player-name board]
-  (let [move (parse-int (prompt (ask-player-for-move player-name)))]
+  (let [move (read-string (prompt (ask-player-for-move player-name)))]
     (if (valid-move? move board)
       move
      (do
