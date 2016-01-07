@@ -69,12 +69,12 @@
 
 (describe "assign-turn-order"
   (it "should reutrn the players info in the correct order"
-    (should= [{:Robert "X"} {:John "O"}]
-      (assign-turn-order "1" [{:Robert "X"} {:John "O"}])))
+    (should= [{:name "Robert" :piece "X"} {:name "John" :piece "O"}]
+      (assign-turn-order "1" [{:name "Robert" :piece "X"} {:name "John" :piece "O"}])))
 
   (it "should return the players info in the correct order"
-    (should= [{:John "O"} {:Robert "X"}]
-      (assign-turn-order "2" [{:Robert "X"} {:John "O"}]))))
+    (should= [{:name "Robert" :piece "X"} {:name "John" :piece "O"}]
+      (assign-turn-order "2" [{:name "John" :piece "O"} {:name "Robert" :piece "X"}]))))
 
 (describe "opposite-piece"
   (it "returns the opposite piece"
