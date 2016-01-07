@@ -65,7 +65,7 @@
     (recur (update-board
              board
              ((first players-info) :piece)
-             (get-player-move ((first players-info) :piece) board))
+             (get-player-move ((first players-info) :name) board))
            (reverse players-info)))))
 
 (defn start-game []
