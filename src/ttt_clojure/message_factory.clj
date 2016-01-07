@@ -36,10 +36,13 @@
   (board-formatter board))))
 
 (defn invalid-input [input]
-  (red (str input " is not a valid input" )))
+  (red (str input " is not a valid input\n" )))
 
 (defn winner-message [name]
   (green (str "Congratulations " name " you have won the game!!")))
 
 (def tie-message
   (yellow "The game is a tie.  A strange game.  The only winning move is not to play."))
+
+(defn player-confirmation [name piece]
+  (str "Welcome " name " you are the " piece "s"))

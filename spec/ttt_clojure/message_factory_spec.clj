@@ -38,3 +38,8 @@
   (it "tells players that the game has ended in a tie"
     (should-contain #"The game is a tie*"
       tie-message)))
+
+(describe "player-confirmation"
+  (it "confirms a players name and their piece"
+    (should-contain #"Welcome Robert you are the Xs*"
+      (player-confirmation "Robert" "X"))))

@@ -15,6 +15,4 @@ but may not be a responsbility of the game.  It can't really go in the
 input class since it prints off output too.  Really it is these are the
 interface with how the client interacts with out game.  Going to hold off on
 pulling any of these things out and asks Toms opinion.
-8.) Valid moves needs to factor something besides numbers
 9.) UI could use some cleaning up.  Confirmation that message were recieved.
-New lines after error messages.
