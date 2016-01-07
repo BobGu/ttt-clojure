@@ -86,8 +86,11 @@
     (with-out-str (it)))
 
   (it "returns the winner of the game if game is won"
-    (should-contain "Turtle"
-      (with-in-str "2\n" (moves ["X" "X" 2 "O" "O" 5 6 7 8] "X" "Turtle" "Hare")))))
+    (should-contain #"Turtle"
+      (with-in-str "2\n"
+        (moves
+          ["X" "X" 2 "O" "O" 5 6 7 8]
+          [{:name "Turtle" :piece "X"} {:name "Hare" :piece "O"}])))))
 
 (describe "game-tied?"
   (it "returns true if the game is tied and there are no empty spaces left"

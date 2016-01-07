@@ -54,33 +54,31 @@
 (defn opposite-piece [piece]
   (if (= "X" piece) "O" "X"))
 
-(defn moves [board player-piece next-player-to-move last-player-to-move]
+(defn moves [board players-info]
   (loop [board board
-         player-piece player-piece
-         next-player-to-move next-player-to-move
-         last-player-to-move last-player-to-move]
+         players-info players-info]
   (print (board-formatter board))
   (if (or (game-won? board) (game-tied? board))
     (if (game-won? board)
-      (winner-message last-player-to-move)
+      (winner-message ((last players-info) :name))
       tie-message)
-    (recur (update-board board player-piece (get-player-move next-player-to-move board))
-           (opposite-piece player-piece)
-           last-player-to-move
-           next-player-to-move))))
+    (recur (update-board
+             board
+             ((first players-info) :piece)
+             (get-player-move ((first players-info) :piece) board))
+           (reverse players-info)))))
 
 (defn start-game []
   (print instructions)
-  (let [player1 (get-player-name)
+  (let [player1-name (get-player-name)
         player1-piece (get-player-piece)
-        player2 (get-player-name)
+        player2-name (get-player-name)
         player2-piece (opposite-piece player1-piece)
-        turn-order-message (ask-player-for-turn-order player1)
+        players-info [{:name player1-name :piece player1-piece} {:name player2-name :piece player2-piece}]
+        turn-order-message (ask-player-for-turn-order player1-name)
         turn-order (get-player-input turn-order-message valid-turn-order?)
-        first-player-name (first-player turn-order player1 player2)
-        second-player-name (second-player turn-order player1 player2)
-        first-player-piece (first-player turn-order player1-piece player2-piece)]
-  (print (moves empty-board first-player-piece first-player-name second-player-name))))
+        players-info (assign-turn-order turn-order players-info)]
+  (print (moves empty-board players-info))))
 
 (defn -main []
   (start-game))
