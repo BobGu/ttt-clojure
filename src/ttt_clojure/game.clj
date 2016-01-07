@@ -59,6 +59,9 @@
 (defn get-player-one-info []
   {:name (get-player-name) :piece (get-player-piece)})
 
+(defn get-player-two-info [opponents-piece]
+  {:name (get-player-name) :piece (opposite-piece opponents-piece)})
+
 (defn start-game []
   (print instructions)
   (let [player1-info (get-player-one-info)

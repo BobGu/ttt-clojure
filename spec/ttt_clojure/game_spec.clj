@@ -115,3 +115,11 @@
   (it "returns a players name and piece"
     (should= {:name "Jimmy" :piece "O"}
       (with-in-str "Jimmy\no\n" (get-player-one-info)))))
+
+(describe "get-player-two-info"
+  (around [it]
+    (with-out-str (it))))
+
+  (it "return a players name and piece"
+    (should= {:name "Billy" :piece "X"}
+      (with-in-str "Billy" (get-player-two-info "O"))))
