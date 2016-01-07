@@ -56,6 +56,9 @@
              (get-player-move ((first players-info) :name) board))
            (reverse players-info)))))
 
+(defn get-player-one-info []
+  {:name (get-player-name) :piece (get-player-piece)})
+
 (defn start-game []
   (print instructions)
   (let [player1-name (get-player-name)

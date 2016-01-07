@@ -107,3 +107,11 @@
     (should-not (game-tied? ["X" "O" "X"
                              "O" "X" "O"
                              "X" "O" 8]))))
+
+(describe "get-player-one-info"
+  (around [it]
+    (with-out-str (it)))
+
+  (it "returns a players name and piece"
+    (should= {:name "Jimmy" :piece "O"}
+      (with-in-str "Jimmy\no\n" (get-player-one-info)))))
