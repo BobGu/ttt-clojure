@@ -61,12 +61,11 @@
 
 (defn start-game []
   (print instructions)
-  (let [player1-name (get-player-name)
-        player1-piece (get-player-piece)
+  (let [player1-info (get-player-one-info)
         player2-name (get-player-name)
-        player2-piece (opposite-piece player1-piece)
-        players-info [{:name player1-name :piece player1-piece} {:name player2-name :piece player2-piece}]
-        turn-order-message (ask-player-for-turn-order player1-name)
+        player2-piece (opposite-piece (player1-info :piece))
+        players-info [player1-info {:name player2-name :piece player2-piece}]
+        turn-order-message (ask-player-for-turn-order (player1-info :name))
         turn-order (get-player-input turn-order-message valid-turn-order?)
         players-info (assign-turn-order turn-order players-info)]
   (print (moves empty-board players-info))))
