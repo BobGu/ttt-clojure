@@ -15,16 +15,6 @@
     players-info
     (reverse players-info)))
 
-(defn first-player [turn-order player1-info player2-info]
-  (if (= "1" turn-order)
-    player1-info
-    player2-info))
-
-(defn second-player [turn-order player1-name player2-name]
-  (if (= "2" turn-order)
-    player1-name
-    player2-name))
-
 (defn get-player-input [message validator]
   (let [input (prompt message)
         valid-input validator]
