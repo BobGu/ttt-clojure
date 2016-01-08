@@ -123,3 +123,16 @@
   (it "return a players name and piece"
     (should= {:name "Billy" :piece "X"}
       (with-in-str "Billy" (get-player-two-info "O"))))
+
+(describe "game-over?"
+  (it "returns true when game is won"
+    (should (game-over? ["X" "X" "X" 3 4 5 6 7 8])))
+
+  (it "returns false when game is not won and there are empty spaces on the board"
+    (should-not (game-over? ["X" "X" 2 "O" "O" 5 6 7 8])))
+
+  (it "returns true when game it tied"
+    (should (game-over? ["X" "X" "O"
+                         "O" "O" "X"
+                         "X" "O" "X"]))))
+
