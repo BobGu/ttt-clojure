@@ -32,6 +32,21 @@ Feature: Game is set up properly
     And the game has started
     Then each player should have been asked for their name
 
+
+  Scenario: Both players names and their pieces are confirmed by the game
+    Given the players enter the correct input for the game
+      | Michael Jordan |
+      | X              |
+      | Billy Bob      |
+      | 1              |
+      | 0              |
+      | 3              |
+      | 1              |
+      | 4              |
+      | 2              |
+    And the game has started
+    Then I expect the game to confirm the players information 2 times
+
   Scenario: Choosing who goes first
     Given the game is setup with players information
     And I enter which player goes first

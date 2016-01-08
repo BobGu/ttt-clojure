@@ -150,3 +150,9 @@
   (should-contain #"The game is a tie*"
     (last (@world :outputs))))
 
+(Given #"^the players enter the correct input for the game$" [arg1]
+  (swap! world update-in [:input]
+    str (.*asList arg1)))
+
+(Then #"I expect the game to confirm the players information (\d+) times$" []
+  (last (@world :outputs)))
