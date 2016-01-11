@@ -1,5 +1,6 @@
 (use 'ttt-clojure.game)
 (use 'speclj.core)
+(import '(java.util.List))
 
 (def world (atom {:outputs []
                   :input ""  }))
@@ -152,7 +153,8 @@
 
 (Given #"^the players enter the correct input for the game$" [arg1]
   (swap! world update-in [:input]
-    str (.*asList arg1)))
+    first (map #(str "!" %) (.asList arg1 java.lang.String)))
+  (should-contain #"these words that are" (@world :input)))
 
 (Then #"I expect the game to confirm the players information (\d+) times$" []
   (last (@world :outputs)))
