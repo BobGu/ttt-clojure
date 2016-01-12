@@ -3,10 +3,6 @@
             [ttt-clojure.message-factory :refer :all]
             [ttt-clojure.validate-input :refer :all]
             [ttt-clojure.input :refer :all]))
-
-(defn printer [message]
-  (println message))
-
 (defn game-won? [board]
   (some true? (map #(all-spaces-the-same? %) (possible-wins board))))
 
@@ -22,13 +18,13 @@
     (reverse players-info)))
 
 (defn get-player-input [message validator]
-  (printer validator)
+  (print validator)
   (let [input (prompt message)
         valid-input validator]
     (if (valid-input input)
      input
      (do
-       (printer (invalid-input input))
+       (print (invalid-input input))
        (get-player-input message valid-input)))))
 
 (defn get-player-name []
@@ -47,7 +43,7 @@
 (defn moves [board players-info]
   (loop [board board
          players-info players-info]
-  (printer (board-formatter board))
+  (print (board-formatter board))
   (if (game-over? board)
     (if (game-won? board)
       (winner-message ((last players-info) :name))
@@ -65,13 +61,13 @@
   {:name (get-player-name) :piece (opposite-piece opponents-piece)})
 
 (defn start-game []
-  (printer instructions)
+  (print instructions)
   (let [player1-info (get-player-one-info)
         players-info [player1-info (get-player-two-info (player1-info :piece))]
         turn-order-message (ask-player-for-turn-order (player1-info :name))
         turn-order (get-player-input turn-order-message valid-turn-order?)
         players-info (assign-turn-order turn-order players-info)]
-  (printer (moves empty-board players-info))))
+  (print (moves empty-board players-info))))
 
 (defn -main []
   (start-game))
