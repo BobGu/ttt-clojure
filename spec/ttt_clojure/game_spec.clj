@@ -132,6 +132,9 @@
       (with-in-str "Jimmy\no\n" (get-player-one-info)))))
 
 (describe "players-info"
+  (around [it]
+    (with-out-str (it)))
+
   (it "returns both players information"
     (should= [{:name "Robert" :piece "O"} {:name "Zach" :piece "X"}]
       (with-in-str "Zach"

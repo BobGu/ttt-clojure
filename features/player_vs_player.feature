@@ -26,7 +26,7 @@ Feature: Game is set up properly
     Then each player should have been asked for their name
 
   Scenario: Choosing who goes first
-    Given the players enter the correct input for the game
+    Given the players enter the correct input for the game 
     And the game has started
     Then I expect to be asked which player should go first
 

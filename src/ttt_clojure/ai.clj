@@ -14,7 +14,6 @@
   (let [game-results (map #(three-in-a-row-possible? piece %)(possible-wins board))]
   (nth (possible-wins board) (.indexOf game-results true))))
 
-
-;(defn bot-move [piece board]
-;  (if (can-win? piece board)))
+(defn possible-boards [board]
+  [(assoc board (first (spaces-available board)) "X")])
 

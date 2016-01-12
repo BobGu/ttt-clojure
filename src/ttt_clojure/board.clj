@@ -12,6 +12,9 @@
 (defn spaces-available? [board]
   (some true? (map #(space-available? board %)[0 1 2 3 4 5 6 7 8])))
 
+(defn spaces-available [board]
+  (filter number? board))
+
 (defn rows [board]
   (into [] (partition 3 board)))
 

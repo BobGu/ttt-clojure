@@ -36,8 +36,21 @@
                              "O" "X" 5
                              "O"  7  8]))))
 
-;(describe "find-winning-move"
-;  (should= 8
-;    (find-winning-move ["X" "X" 8])))
+(describe "possible-boards"
+  (it "returns all possible boards given a board"
+    (should= [["X" "X" "O"
+               "O" "O" "X"
+               "X" "O" "X"]]
+      (let [board ["X" "X" "O"
+                   "O" "O" "X"
+                   "X" "O"  8]]
+      (possible-boards board))))
 
-
+  (it "returns all possible boards given a board"
+    (should= [["X" "X" "O"
+               "O" "O" "X"
+               "X" "O" "X"]]
+      (let [board ["X"  1  "O"
+                   "O" "O" "X"
+                   "X" "O" "X"]]
+      (possible-boards board)))))

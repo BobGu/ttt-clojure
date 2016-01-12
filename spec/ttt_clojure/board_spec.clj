@@ -69,3 +69,12 @@
   (should-not (spaces-available? ["X" "X" "O"
                                       "O" "O" "X"
                                       "O" "O" "X"]))))
+
+(describe "spaces-available"
+  (it "returns all available spaces on the board"
+    (should= [0 1 2 3 4 5 6 7]
+      (spaces-available [0 1 2 3 4 5 6 7 "X"])))
+
+  (it "should return no spaces if there are not any available"
+    (should= []
+      (spaces-available ["X" "O" "X" "O" "X" "O" "X" "O" "X"]))))
