@@ -40,13 +40,13 @@
 
 (describe "valid-move?"
   (it "should return true if that space is available"
-    (should (valid-move? 2 [0 1 2 3 4 5 6 7 8])))
+    (should (valid-move? "2" [0 1 2 3 4 5 6 7 8])))
 
   (it "should return false if that space is not available"
-    (should-not (valid-move? 9 [0 1 2 3 4 5 6 7 8])))
+    (should-not (valid-move? "9" [0 1 2 3 4 5 6 7 8])))
 
   (it "should return false if that space is already occupied by a piece"
-    (should-not (valid-move? 0 ["X" 1 2 3 4 5 6 7 8])))
+    (should-not (valid-move? "0" ["X" 1 2 3 4 5 6 7 8])))
 
   (it "should return false if they don't enter a number"
     (should-not (valid-move? "blah blah blah" [0 1 2 3 4 5 6 7 8]))))

@@ -65,7 +65,22 @@
   (it "should return the turn order if it is valid"
     (should= "1"
       (with-in-str "1"
-        (get-player-input ask-player-for-turn-order valid-turn-order?)))))
+        (get-player-input ask-player-for-turn-order valid-turn-order?))))
+
+  (it "should return the player move if it is valid"
+    (should= "4"
+      (with-in-str "4"
+        (let [message (ask-player-for-move "Robert")]
+        (get-player-input message (validate-move [0 1 2 3 4 5 6 7 8])))))))
+
+(describe "validate-move"
+  (around [it]
+    (with-out-str (it)))
+
+  (it "should return true if the space is available"
+    (should
+      (let [valid-move (validate-move [0 1 2 3 4 5 6 7 8])]
+      valid-move 4))))
 
 (describe "assign-turn-order"
   (it "should reutrn the players info in the correct order"
