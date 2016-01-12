@@ -133,11 +133,11 @@
 
 (describe "get-player-two-info"
   (around [it]
-    (with-out-str (it))))
+    (with-out-str (it)))
 
   (it "return a players name and piece"
     (should= {:name "Billy" :piece "X"}
-      (with-in-str "Billy" (get-player-two-info "O"))))
+      (with-in-str "Billy" (get-player-two-info {:name "John" :piece "O"})))))
 
 (describe "game-over?"
   (it "returns true when game is won"

@@ -3,6 +3,7 @@
             [ttt-clojure.message-factory :refer :all]
             [ttt-clojure.validate-input :refer :all]
             [ttt-clojure.input :refer :all]))
+
 (defn game-won? [board]
   (some true? (map #(all-spaces-the-same? %) (possible-wins board))))
 
@@ -57,14 +58,16 @@
 (defn get-player-one-info []
   {:name (get-player-name) :piece (get-player-piece)})
 
-(defn get-player-two-info [opponents-piece]
-  {:name (get-player-name) :piece (opposite-piece opponents-piece)})
+(defn get-player-two-info [player1-info]
+  {:name (get-player-name) :piece (opposite-piece (player1-info :piece))})
+
+(defn players-info [player1-info player2-info]
+  [player1-info player2-info])
 
 (defn start-game []
   (print instructions)
-  (let [player1-info (get-player-one-info)
-        players-info [player1-info (get-player-two-info (player1-info :piece))]
-        turn-order-message (ask-player-for-turn-order (player1-info :name))
+  (let [players-info (-> (-> (get-player-one-info)(get-player-two-info))(players-info))
+        turn-order-message (ask-player-for-turn-order (first players-info :name))
         turn-order (get-player-input turn-order-message valid-turn-order?)
         players-info (assign-turn-order turn-order players-info)]
   (print (moves empty-board players-info))))
