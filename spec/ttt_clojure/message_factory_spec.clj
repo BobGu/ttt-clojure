@@ -13,8 +13,8 @@
 
 (describe "ask-player-for-turn-order"
   (it "should ask user if a player should go first or second"
-    (should-contain #"you would like Billy*" 
-      (ask-player-for-turn-order "Billy"))))
+    (should-contain #"you would like John*" 
+      (ask-player-for-turn-order [{:name "John" :piece "O"} {:name "James" :piece "X"}]))))
 
 (describe "ask-player-for-piece"
   (it "should ask player what piece they would like to be"

@@ -19,7 +19,6 @@
     (reverse players-info)))
 
 (defn get-player-input [message validator]
-  (print validator)
   (let [input (prompt message)
         valid-input validator]
     (if (valid-input input)
@@ -52,25 +51,21 @@
     (recur (update-board
              board
              ((first players-info) :piece)
-             (read-string (get-player-input ((first players-info) :name) (validate-move board))))
+             (read-string (get-player-input (ask-player-for-move ((first players-info) :name)) (validate-move board))))
            (reverse players-info)))))
 
 (defn get-player-one-info []
   {:name (get-player-name) :piece (get-player-piece)})
 
-(defn get-player-two-info [player1-info]
-  {:name (get-player-name) :piece (opposite-piece (player1-info :piece))})
-
-(defn players-info [player1-info player2-info]
-  [player1-info player2-info])
+(defn players-info [player1-info]
+  [player1-info {:name (get-player-name) :piece (opposite-piece (player1-info :piece))}])
 
 (defn start-game []
   (print instructions)
-  (let [players-info (-> (-> (get-player-one-info)(get-player-two-info))(players-info))
-        turn-order-message (ask-player-for-turn-order (first players-info :name))
-        turn-order (get-player-input turn-order-message valid-turn-order?)
-        players-info (assign-turn-order turn-order players-info)]
-  (print (moves empty-board players-info))))
+  (let  [players-info (-> (get-player-one-info)(players-info))
+         turn-order-message (ask-player-for-turn-order players-info)
+         turn-order (get-player-input turn-order-message valid-turn-order?)]
+  (print (moves empty-board (assign-turn-order turn-order players-info)))))
 
 (defn -main []
   (start-game))
