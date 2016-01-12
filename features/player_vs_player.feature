@@ -3,11 +3,7 @@ Feature: Game is set up properly
   properly.
 
   Scenario: Instructions and valid prompts for player 1
-    Given I enter a valid name
-    And I enter a valid piece
-    And I enter a valid name
-    And I enter which player goes first
-    And I enter valid moves for the game
+    Given the players enter the correct input for the game
     And the game has started
     Then I should see instructions on how to play the game
     And I should be asked for my name
@@ -25,38 +21,17 @@ Feature: Game is set up properly
     And I should have been asked for my piece again
 
   Scenario: A second player gets asked for their name
-    Given player 1 has entered all their info correctly
-    And I enter a valid name
-    And I enter which player goes first
-    And I enter valid moves for the game
+    Given the players enter the correct input for the game
     And the game has started
     Then each player should have been asked for their name
 
-
-  Scenario: Both players names and their pieces are confirmed by the game
-    Given the players enter the correct input for the game
-      | Michael Jordan |
-      | X              |
-      | Billy Bob      |
-      | 1              |
-      | 0              |
-      | 3              |
-      | 1              |
-      | 4              |
-      | 2              |
-    And the game has started
-    Then I expect the game to confirm the players information 2 times
-
   Scenario: Choosing who goes first
-    Given the game is setup with players information
-    And I enter which player goes first
-    And I enter valid moves for the game
+    Given the players enter the correct input for the game
     And the game has started
     Then I expect to be asked which player should go first
 
   Scenario: Seeing an empty board to start the game
-    Given the players have entered names and turn order
-    And I enter valid moves for the game
+    Given the players enter the correct input for the game
     And the game has started
     Then I expect to see an empty board
 

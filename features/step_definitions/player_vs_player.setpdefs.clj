@@ -36,7 +36,6 @@
   (swap! world update-in [:input]
     str"pooooopy\n"))
 
-
 (Then #"^I should have been told the piece I entered was invalid" []
   (should-contain #"is not a valid input"
     (last (@world :outputs))))
@@ -45,10 +44,6 @@
   (should= 2
     (count (re-seq  #"What piece would you like"
       (last (@world :outputs))))))
-
-(Given #"^player 1 has entered all their info correctly" []
-  (swap! world update-in [:input]
-    str "Billy\nx\n"))
 
 (Then #"^each player should have been asked for their name" []
   (should= 2
@@ -64,7 +59,7 @@
     str "1\n"))
 
 (Then #"^I expect to be asked which player should go first$" []
-  (should-contain #"you would like john*"
+  (should-contain #"you would like Robert*"
     (last (@world :outputs))))
 
 (Given #"^the players have entered names and turn order$" []
@@ -84,7 +79,15 @@
     (last (@world :outputs))))
 
 (Then #"^I expect to see an empty board$" []
-  (should-contain "     |     |     |\n 0   |  1  |  2  |    \n_____|_____|_____|\n     |     |     |\n 3   |  4  |  5  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
+  (should-contain #"     |     |     |
+                     0   |  1  |  2  |
+                    _____|_____|_____|
+                         |     |     |
+                     3   |  4  |  5  |
+                    _____|_____|_____|
+                         |     |     |
+                     6   |  7  |  8  |
+                    _____|_____|_____|"
     (last (@world :outputs))))
 
 (Given #"^the first player has picked the top left space on the board$" []
@@ -92,7 +95,15 @@
     str "0\n"))
 
 (Then #"^I expect to see a board with that space filled$" []
-  (should-contain "     |     |     |\n 0   |  1  |  2  |    \n_____|_____|_____|\n     |     |     |\n X   |  4  |  O  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
+  (should-contain #"     |     |     |
+                     0   |  1  |  2  |
+                    _____|_____|_____|
+                         |     |     |
+                     X   |  4  |  O  |
+                    _____|_____|_____|
+                         |     |     |
+                     6   |  7  |  8  |
+                    _____|_____|_____|"
     (last (@world :outputs))))
 
 (Given #"^I enter valid moves for the game$" []
@@ -108,11 +119,27 @@
     str "1\n3\n2\n"))
 
 (Then #"^I expect to see the center square filled with the second players piece$" []
-  (should-contain"     |     |     |\n X   |  X  |  X  |    \n_____|_____|_____|\n     |     |     |\n O   |  O  |  5  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
+  (should-contain #"     |     |     |
+                     X   |  X  |  X  |
+                    _____|_____|_____|
+                         |     |     |
+                     O   |  O  |  5  |
+                    _____|_____|_____|
+                         |     |     |
+                     6   |  7  |  8  |
+                    _____|_____|_____|"
     (last (@world :outputs))))
 
 (Then #"^I expect to see the top left space filled by the first players piece$" []
-  (should-contain "     |     |     |\n X   |  X  |  X  |    \n_____|_____|_____|\n     |     |     |\n O   |  O  |  5  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
+  (should-contain #"     |     |     |
+                     X   |  X  |  X  |
+                    _____|_____|_____|
+                         |     |     |
+                     O   |  O  |  5  |
+                    _____|_____|_____|
+                         |     |     |
+                     6   |  7  |  8  |
+                    _____|_____|_____|"
     (last (@world :outputs))))
 
 (Given #"^the player that enters their name first chooses to be the letter X$" []
@@ -140,7 +167,15 @@
     (last (@world :outputs))))
 
 (Then #"^I expect the top left space to be filled by the letter O$" []
-  (should-contain "     |     |     |\n O   |  O  |  O  |    \n_____|_____|_____|\n     |     |     |\n X   |  X  |  5  |    \n_____|_____|_____|\n     |     |     |\n 6   |  7  |  8  |    \n_____|_____|_____|"
+  (should-contain #"     |     |     |
+                     O   |  O  |  O  |
+                    _____|_____|_____|
+                         |     |     |
+                     X   |  X  |  5  |
+                    _____|_____|_____|
+                         |     |     |
+                     6   |  7  |  8  |
+                    _____|_____|_____|"
     (last (@world :outputs))))
 
 (Given #"^they each play pieces until the board is filled$" []
@@ -151,10 +186,9 @@
   (should-contain #"The game is a tie*"
     (last (@world :outputs))))
 
-(Given #"^the players enter the correct input for the game$" [arg1]
+(Given #"^the players enter the correct input for the game$" []
   (swap! world update-in [:input]
-    first (map #(str "!" %) (.asList arg1 java.lang.String)))
-  (should-contain #"these words that are" (@world :input)))
+    str "Robert\nx\nJohn\n1\n0\n3\n1\n4\n2\n"))
 
 (Then #"I expect the game to confirm the players information (\d+) times$" []
   (last (@world :outputs)))
