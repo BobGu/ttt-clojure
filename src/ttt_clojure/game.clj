@@ -19,13 +19,12 @@
     (reverse players-info)))
 
 (defn get-player-input [message validator]
-  (let [input (prompt message)
-        valid-input validator]
-    (if (valid-input input)
+  (let [input (prompt message)]
+    (if (validator input)
      input
      (do
        (print (invalid-input input))
-       (get-player-input message valid-input)))))
+       (get-player-input message validator)))))
 
 (defn get-player-name []
   (get-player-input ask-player-for-name valid-name?))
