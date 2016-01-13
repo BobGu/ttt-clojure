@@ -51,18 +51,41 @@
 (describe "score-a-board"
   (it "returns a postive value if the game is won"
     (should= 1
-      (score-a-board "X" ["X" "X" "X"
-                          "O" "O" "X"
-                          "X" "O" "O"])))
+      (score-a-board 1  "X" ["X" "X" "X"
+                             "O" "O" "X"
+                             "X" "O" "O"])))
 
   (it "returns zero if the game is a tie"
     (should= 0
-      (score-a-board "X" ["X"  "O" "X"
-                          "O"  "O" "X"
-                          "O"  "X" "O"])))
+      (score-a-board  1 "X" ["X"  "O" "X"
+                             "O"  "O" "X"
+                             "O"  "X" "O"])))
 
   (it "returns a negative value if the opposition wins"
-     (should= -1
-      (score-a-board "O" ["X" "X" "X"
-                          "O" "O" "X"
-                          "X" "O" "O"]))))
+    (should= -1
+      (score-a-board 1 "O" ["X" "X" "X"
+                            "O" "O" "X"
+                            "X" "O" "O"]))))
+
+(describe "minimax"
+  (it "returns a postive score if computer wins on next move"
+    (should (< 0
+      (minimax "X" ["X" "X" "X"
+                    "O" "O" "X"
+                    "X" "O" "O"]))))
+  (it "returns a negative score if computer doesn't win the game"
+    (should (> 0
+              (minimax "X" ["O" "O" "O"
+                            "X" "X" "O"
+                            "O" "X" "O"]))))
+
+  (it "returns a zero score if the game is a draw"
+    (should= 0
+      (minimax "X" ["O" "O" "X"
+                    "X" "X" "O"
+                    "O" "O" "X"])))
+  (it "returns a higher score if game is won earlier"
+    (should= 2
+      (minimax "X" ["X" "X" "X"
+                    "O" "O" "X"
+                    "O" "O"  8]))))

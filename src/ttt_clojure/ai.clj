@@ -23,7 +23,13 @@
 (defn possible-boards [board]
   [(assoc board (first (spaces-available board)) "X")])
 
-(defn score-a-board [piece board]
+(defn score-a-board [depth piece board]
   (if (game-tied? board) 0
-    (if (won? piece board) 1 -1)))
+    (if (won? piece board)
+      (* 1 depth)
+      (* -1 depth))))
+
+(defn minimax [piece board]
+  (let [depth (+ 1 (count (spaces-available board)))]
+  (score-a-board depth piece board)))
 
