@@ -48,6 +48,8 @@
   (it "returns false if the opposite person has won"
     (should-not (won? "X" ["O" "O" "O" "X" "X" 5 6 7 8]))))
 
+
+
 (describe "score-a-board"
   (it "returns a postive value if the game is won"
     (should= 1
@@ -65,27 +67,35 @@
     (should= -1
       (score-a-board 1 "O" ["X" "X" "X"
                             "O" "O" "X"
-                            "X" "O" "O"]))))
+                            "X" "O" "O"])))
+  (it "returns a large score"
+     (should= 5
+       (score-a-board 5 "O" ["O" "O" "O"
+                             "X" "X"  5
+                              6   7   8]))))
 
 (describe "minimax"
-  (it "returns a postive score if computer wins on next move"
-    (should (< 0
-      (minimax "X" ["X" "X" "X"
+  (it "it chooses the best move"
+    (should= {:move 2 :score 1}
+      (minimax "X" ["X" "X"  2
                     "O" "O" "X"
-                    "X" "O" "O"]))))
-  (it "returns a negative score if computer doesn't win the game"
-    (should (> 0
-              (minimax "X" ["O" "O" "O"
-                            "X" "X" "O"
-                            "O" "X" "O"]))))
+                    "X" "O" "O"])))
 
-  (it "returns a zero score if the game is a draw"
-    (should= 0
-      (minimax "X" ["O" "O" "X"
-                    "X" "X" "O"
+  (it "returns a move and zero score if it is the only move"
+    (should= {:move 5 :score 0}
+      (minimax "O" ["O" "O" "X"
+                    "X" "X"  5
                     "O" "O" "X"])))
-  (it "returns a higher score if game is won earlier"
-    (should= 2
-      (minimax "X" ["X" "X" "X"
+
+  (it "returns a higher score and move if game can be won earlier"
+    (should= {:move 2 :score 2}
+      (minimax "X" ["X" "X"  2
                     "O" "O" "X"
-                    "O" "O"  8]))))
+                    "O" "O"  8])))
+
+  (it "returns a neagtive score if game is won by opponent"
+    (should= {:move 8 :score 0} 
+      (minimax "X" ["O" "O" "X"
+                    "X" "O" "O"
+                    "O" "X"  8]))))
+

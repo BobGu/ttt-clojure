@@ -78,3 +78,8 @@
   (it "should return no spaces if there are not any available"
     (should= []
       (spaces-available ["X" "O" "X" "O" "X" "O" "X" "O" "X"]))))
+
+(describe "depth"
+  (it "should return the depth of the board"
+    (should= 2
+      (depth ["X" "X" "O" "O" "X" "O" "X" "O" 8]))))

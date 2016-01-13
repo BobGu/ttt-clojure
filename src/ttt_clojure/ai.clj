@@ -30,6 +30,14 @@
       (* -1 depth))))
 
 (defn minimax [piece board]
-  (let [depth (+ 1 (count (spaces-available board)))]
-  (score-a-board depth piece board)))
+  (loop [piece piece
+        board board
+        last-move ""]
+  (print board)
+  (if (or (= 1 (depth board)) (game-won? board))
+    {:move last-move :score (score-a-board (depth board) piece board)}
+    (recur
+      piece
+      (update-board board piece (first (spaces-available board)))
+      (first (spaces-available board))))))
 

@@ -33,3 +33,6 @@
 
 (defn all-spaces-the-same? [set-of-spaces]
   (every? (fn [space] (= (first set-of-spaces) space)) set-of-spaces))
+
+(defn depth [board]
+  (+ 1 (count (spaces-available board))))
