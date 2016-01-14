@@ -20,24 +20,24 @@
 (defn winning-move [piece board]
   (first (filter #(not (= piece %)) (winning-set piece board))))
 
-(defn possible-boards [board]
-  [(assoc board (first (spaces-available board)) "X")])
-
 (defn score-a-board [depth piece board]
   (if (game-tied? board) 0
     (if (won? piece board)
       (* 1 depth)
       (* -1 depth))))
 
+(defn future-boards [piece board]
+  (map #(update-board board piece %) (spaces-available board)))
+
 (defn minimax [piece board]
   (loop [piece piece
-        board board
-        last-move ""]
-  (print board)
-  (if (or (= 1 (depth board)) (game-won? board))
+         board board
+         last-move ""]
+  (if (game-over? board)
     {:move last-move :score (score-a-board (depth board) piece board)}
     (recur
       piece
       (update-board board piece (first (spaces-available board)))
       (first (spaces-available board))))))
 
+;how do i make sure the computer player moves into all spots
