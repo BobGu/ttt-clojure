@@ -29,15 +29,19 @@
 (defn future-boards [piece board]
   (map #(update-board board piece %) (spaces-available board)))
 
-(defn minimax [piece board]
-  (loop [piece piece
+(defn scores [piece board maximizing-player]
+  (let  [piece piece
          board board
-         last-move ""]
-  (if (game-over? board)
-    {:move last-move :score (score-a-board (depth board) piece board)}
-    (recur
-      piece
-      (update-board board piece (first (spaces-available board)))
-      (first (spaces-available board))))))
+         maximizing-player maximizing-player]
 
-;how do i make sure the computer player moves into all spots
+  (if (game-over? board)
+    (score-a-board (depth board) maximizing-player board)
+    (flatten (map #(scores (opposite-piece piece) % maximizing-player)(future-boards piece board))))))
+
+; if the game is over
+; assign on the intial moves to intial moves
+; then when scores get returned we'll map through those scores and assign the
+; numbers of the intial moves to the move key.
+; then we return the move with the highest score
+
+

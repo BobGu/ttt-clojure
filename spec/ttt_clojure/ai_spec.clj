@@ -74,38 +74,38 @@
                              "X" "X"  5
                               6   7   8]))))
 
-(describe "minimax"
+(describe "scores"
   (context "end game scenarios with one move left for the computer player "
     (it "it chooses the best move"
-      (should= {:move 2 :score 1}
-        (minimax "X" ["X" "X"  2
+      (should= [1]
+        (scores "X" ["X" "X"  2
                       "O" "O" "X"
-                      "X" "O" "O"])))
+                      "X" "O" "O"] "X")))
 
     (it "returns a move and zero score if it is the only move"
-      (should= {:move 5 :score 0}
-        (minimax "O" ["O" "O" "X"
+      (should= [0]
+        (scores "O" ["O" "O" "X"
                       "X" "X"  5
-                      "O" "O" "X"])))
+                      "O" "O" "X"] "O")))
 
     (it "returns a neagtive score if game is won by opponent"
-      (should= {:move 8 :score 0}
-        (minimax "X" ["O" "O" "X"
+      (should= [0]
+        (scores "X" ["O" "O" "X"
                       "X" "O" "O"
-                      "O" "X"  8]))))
+                      "O" "X"  8] "X"))))
 
   (context "end game scenarios with two moves left and the ai acts next"
     (it "returns a higher score and move if game can be won earlier"
-      (should= {:move 2 :score 2}
-        (minimax "X" ["X" "X"  2
+      (should= [2 -1]
+        (scores "X"  ["X" "X"  2
                       "O" "O" "X"
-                      "O" "O"  8])))
+                      "O" "O"  8] "X")))
 
     (it "returns the best move and its score"
-      (should= {:move 8 :score 2}
-        (minimax "X" ["X" "O"  2
+      (should= [0 2]
+        (scores "X" ["X" "O"  2
                       "O" "X" "O"
-                      "O" "X"  8])))))
+                      "O" "X"  8] "X")))))
 
 (describe "future-boards"
   (it "returns all boards where player moves into every available space"
@@ -117,4 +117,13 @@
                "O" "X" "X"]]
       (future-boards "X" ["X" "O"  2
                           "O" "X" "O"
-                          "O" "X"  8]))))
+                          "O" "X"  8])))
+
+  (it "returns all the future boards"
+    (should= [["X" "O" "X" "O" "X" "O" "X" 7 8]
+              ["X" "O" "X" "O" "X" "O" 6 "X" 8]
+              ["X" "O" "X" "O" "X" "O" 6 7 "X"]]
+     (future-boards "X" ["X" "O" "X"
+                         "O" "X" "O"
+                          6   7   8]))))
+
