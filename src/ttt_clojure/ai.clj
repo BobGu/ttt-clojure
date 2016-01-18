@@ -36,12 +36,16 @@
 
   (if (game-over? board)
     (score-a-board (depth board) maximizing-player board)
-    (flatten (map #(scores (opposite-piece piece) % maximizing-player)(future-boards piece board))))))
+    (let [scores (map #(scores (opposite-piece piece) % maximizing-player)(future-boards piece board))]
+    (map flatten (doall scores))))))
 
-; if the game is over
-; assign on the intial moves to intial moves
-; then when scores get returned we'll map through those scores and assign the
-; numbers of the intial moves to the move key.
-; then we return the move with the highest score
+(defn moves-and-scores [moves scores]
+  (map vector moves scores))
 
+(defn minumum-scoring-move [moves-scores]
+  (first (first (sort-by #(last %) moves-scores))))
 
+(defn best-move [piece board]
+  (let [scores (scores piece board (opposite-piece piece))
+        moves (spaces-available board)]
+    (minumum-scoring-move (moves-and-scores moves scores))))
