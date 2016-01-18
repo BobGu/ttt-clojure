@@ -76,36 +76,37 @@
 
 (describe "scores"
   (context "end game scenarios with one move left for the computer player "
-    (it "it chooses the best move"
+    (it "returns one score"
       (should= [1]
-        (scores "X" ["X" "X"  2
+        (scores "X"  ["X" "X"  2
                       "O" "O" "X"
                       "X" "O" "O"] "X")))
 
-    (it "returns a move and zero score if it is the only move"
+    (it "returns one score"
       (should= [0]
-        (scores "O" ["O" "O" "X"
+        (scores "O"  ["O" "O" "X"
                       "X" "X"  5
-                      "O" "O" "X"] "O")))
-
-    (it "returns a neagtive score if game is won by opponent"
-      (should= [0]
-        (scores "X" ["O" "O" "X"
-                      "X" "O" "O"
-                      "O" "X"  8] "X"))))
+                      "O" "O" "X"] "O"))))
 
   (context "end game scenarios with two moves left and the ai acts next"
-    (it "returns a higher score and move if game can be won earlier"
+    (it "returns the scores"
       (should= [2 -1]
         (scores "X"  ["X" "X"  2
                       "O" "O" "X"
                       "O" "O"  8] "X")))
 
-    (it "returns the best move and its score"
+    (it "returns the scores"
       (should= [0 2]
-        (scores "X" ["X" "O"  2
+        (scores "X"  ["X" "O"  2
                       "O" "X" "O"
-                      "O" "X"  8] "X")))))
+                      "O" "X"  8] "X"))))
+
+  (context "computer is maximizing player with 3 moves left"
+    (it "should return the scores"
+      (should= [0 2 1]
+        (scores "X" ["O" "X"  2
+                      3  "X"  5
+                     "O" "O" "X"] "X")))))
 
 (describe "future-boards"
   (it "returns all boards where player moves into every available space"
@@ -127,3 +128,23 @@
                          "O" "X" "O"
                           6   7   8]))))
 
+(describe "minumum-scoring-move"
+  (it "should return the move with the minumum score"
+    (should= 0
+      (minumum-scoring-move [[2 4] [0 1]])))
+
+  (it "should return the move with the smallest score"
+     (should= 8
+       (minumum-scoring-move [[8 -4][0 1][7 -1]]))))
+
+(describe "moves-and-scores"
+  (it "should return scores-and-moves"
+    (should= '([0 1] [2 -1])
+      (moves-and-scores [0 2] [1 -1]))))
+
+(describe "best-move"
+  (it "returns the best move for the computer"
+    (should= 8
+      (best-move "X" ["X" "X" "O"
+                      "O" "X" "O"
+                       6  "O"  8]))))
