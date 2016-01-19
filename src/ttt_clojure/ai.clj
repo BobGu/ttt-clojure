@@ -26,6 +26,18 @@
       (* 1 depth)
       (* -1 depth))))
 
+(defn piece-count [piece board]
+  (count (filterv #(= piece %) board)))
+
+(defn maximizing-player? [piece board]
+  (= (piece-count piece board) (piece-count (opposite-piece piece) board)))
+
+(defn min-scoring-move [moves-scores]
+  (first (first (sort-by #(last %) moves-scores))))
+
+(defn max-scoring-move [moves-scores]
+  (first (last (sort-by #(last %) moves-scores))))
+
 (defn future-boards [piece board]
   (map #(update-board board piece %) (spaces-available board)))
 
@@ -36,16 +48,15 @@
 
   (if (game-over? board)
     (score-a-board (depth board) maximizing-player board)
-    (let [scores (map #(scores (opposite-piece piece) % maximizing-player)(future-boards piece board))]
-    (map flatten (doall scores))))))
+    (map #(scores (opposite-piece piece) % maximizing-player)(future-boards piece board)))))
 
 (defn moves-and-scores [moves scores]
   (map vector moves scores))
 
-(defn minumum-scoring-move [moves-scores]
-  (first (first (sort-by #(last %) moves-scores))))
-
 (defn best-move [piece board]
-  (let [scores (scores piece board (opposite-piece piece))
+  (let [maximizing-player (if (maximizing-player? piece board) piece (opposite-piece piece))
+        scores (scores piece board maximizing-player)
         moves (spaces-available board)]
-    (minumum-scoring-move (moves-and-scores moves scores))))
+    (if (maximizing-player? piece board)
+      (max-scoring-move (moves-and-scores moves scores)))
+      (min-scoring-move (moves-and-scores moves scores))))

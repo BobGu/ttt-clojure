@@ -128,14 +128,23 @@
                          "O" "X" "O"
                           6   7   8]))))
 
-(describe "minumum-scoring-move"
-  (it "should return the move with the minumum score"
+(describe "min-scoring-move"
+  (it "should return the move with the min score"
     (should= 0
-      (minumum-scoring-move [[2 4] [0 1]])))
+      (min-scoring-move [[2 4] [0 1]])))
 
   (it "should return the move with the smallest score"
      (should= 8
-       (minumum-scoring-move [[8 -4][0 1][7 -1]]))))
+       (min-scoring-move [[8 -4][0 1][7 -1]]))))
+
+(describe "max-scoring-move"
+  (it "should return the move with the max score"
+    (should= 1
+      (max-scoring-move [[1 4] [2 3] [7 -1]])))
+
+  (it "should return the move with the max score"
+    (should= 7
+      (max-scoring-move [[7 1] [2 0] [0 -1]]))))
 
 (describe "moves-and-scores"
   (it "should return scores-and-moves"
@@ -143,8 +152,36 @@
       (moves-and-scores [0 2] [1 -1]))))
 
 (describe "best-move"
-  (it "returns the best move for the computer"
-    (should= 8
-      (best-move "X" ["X" "X" "O"
-                      "O" "X" "O"
-                       6  "O"  8]))))
+  (context "computer player acts second"
+    (it "returns the best move for the computer"
+      (should= 8
+        (best-move "X" ["X" "X" "O"
+                        "O" "X" "O"
+                         6  "O"  8]))))
+
+  (context "computer player acts first"
+    (it "returns the best move for the computer"
+      (should= 8
+        (best-move "X" ["O"  "X" "X"
+                        "O"  "O" "X"
+                         6    7   8])))))
+
+(describe "maximizing-player?"
+  (it "returns true if the piece has an equal amount of pieces on the board"
+    (should (maximizing-player? "X" ["X" 1 2 3 4 5 6 7 "O"])))
+
+  (it "returns false if the piece has less than the other player"
+    (should-not (maximizing-player? "O" ["O" "X" "X" 3 4 5 6 7 8]))))
+
+(describe "piece-count"
+  (it "returns the amount of a particular piece"
+    (should= 1
+     (piece-count "X" ["X" 1 2 3 4 5 6 7 8])))
+
+  (it "returns the amount of a particular piece"
+    (should= 0
+      (piece-count "X" [0 1 2 3 4 5 6 7 8])))
+
+  (it "returns the amount of a particular piece"
+    (should= 2
+      (piece-count "O" ["O" "O" 2 "X" "X" 5 6 7 8]))))
