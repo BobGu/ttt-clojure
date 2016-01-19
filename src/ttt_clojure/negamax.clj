@@ -13,14 +13,23 @@
         spaces (spaces-available board)]
     (if (game-over? board)
       (score board)
-      ( - (negamax (opposite-piece piece) board (first spaces) (- color)))))))
+      (- (negamax (opposite-piece piece) board (first spaces) (- color)))))))
+
+(defn to-set [s]
+  (if (set? s) s #{s}))
+
+(defn set-union [s1 s2]
+  (clojure.set/union (to-set s1) (to-set s2)))
+
+(defn mergeMatches [propertyMapList]
+  (reduce #(merge-with set-union %1 %2) {} propertyMapList))
 
 (defn score-map [piece board]
   (let [score-map (sorted-map)
         spaces (spaces-available board)
-        scored-spaces (map #(list % (negamax piece board %)) spaces)]
-    scored-spaces))
+        scored-spaces (map #(hash-map (negamax piece board %) %) spaces)]
+    (into score-map (mergeMatches scored-spaces))))
 
 (defn get-move [piece board]
   (let [scores (score-map piece board)]
-    (take 1 (last (vals scores)))))
+    (to-set (last (vals scores)))))
