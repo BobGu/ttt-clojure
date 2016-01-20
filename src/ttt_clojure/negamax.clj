@@ -7,13 +7,13 @@
   (if (game-won? board) 10 0))
 
 (defn negamax
-  ([piece board index](negamax piece board index 1))
-  ([piece board index color]
+  ([piece board index](negamax piece board index 1 (inc (count (spaces-available board)))))
+  ([piece board index color depth]
   (let [board (update-board board piece index)
         spaces (spaces-available board)]
     (if (game-over? board)
-      (* color (score board))
-      (map #(negamax (opposite-piece piece) board % (- color)) spaces))))))
+      (* color (* depth (score board)))
+      (apply max (flatten (map #(negamax (opposite-piece piece) board % (- color) (dec depth)) spaces)))))))
 
 (defn to-set [s]
   (if (set? s) s #{s}))
