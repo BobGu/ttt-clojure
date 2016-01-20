@@ -2,18 +2,22 @@
   (:require [ttt-clojure.board :refer :all]
             [ttt-clojure.game :refer :all]))
 
+(defn abs [n] (max n (- n)))
+
+(defn best-value [scores]
+  (- (last (sort-by #(abs %) (map #(* -1 %) scores)))))
 
 (defn score [board]
   (if (game-won? board) 10 0))
 
 (defn negamax
-  ([piece board index](negamax piece board index 1 (inc (count (spaces-available board)))))
+  ([piece board index](negamax piece board index 1 (count (spaces-available board))))
   ([piece board index color depth]
   (let [board (update-board board piece index)
         spaces (spaces-available board)]
     (if (game-over? board)
       (* color (* depth (score board)))
-      (apply max (flatten (map #(negamax (opposite-piece piece) board % (- color) (dec depth)) spaces)))))))
+      (best-value (flatten (map #(negamax (opposite-piece piece) board % (- color) (dec depth)) spaces)))))))
 
 (defn to-set [s]
   (if (set? s) s #{s}))
