@@ -12,8 +12,8 @@
   (let [board (update-board board piece index)
         spaces (spaces-available board)]
     (if (game-over? board)
-      (score board)
-      (- (negamax (opposite-piece piece) board (first spaces) (- color)))))))
+      (* color (score board))
+      (map #(negamax (opposite-piece piece) board % (- color)) spaces))))))
 
 (defn to-set [s]
   (if (set? s) s #{s}))
@@ -32,4 +32,4 @@
 
 (defn get-move [piece board]
   (let [scores (score-map piece board)]
-    (to-set (last (vals scores)))))
+    (first (to-set (last (vals scores))))))
