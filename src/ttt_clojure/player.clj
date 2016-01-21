@@ -2,5 +2,6 @@
 
 (defprotocol Player
   (fetch-player-name [this])
-  (fetch-player-piece [this]))
+  (fetch-player-piece [this])
+  (fetch-player-move [this name board]))
 

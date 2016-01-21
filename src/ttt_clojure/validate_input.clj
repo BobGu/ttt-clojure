@@ -20,3 +20,4 @@
   (let [move (str->int move)]
   (if (number? move)
     (some #(= move %) board))))
+

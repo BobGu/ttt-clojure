@@ -18,10 +18,6 @@
     players-info
     (reverse players-info)))
 
-(defn validate-move [board]
-  (fn [move]
-    (valid-move? move board)))
-
 (defn opposite-piece [piece]
   (if (= "X" piece) "O" "X"))
 
