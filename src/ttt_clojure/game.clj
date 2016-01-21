@@ -3,7 +3,8 @@
             [ttt-clojure.message-factory :refer :all]
             [ttt-clojure.validate-input :refer :all]
             [ttt-clojure.input :refer :all]
-            [ttt-clojure.human :refer :all]))
+            [ttt-clojure.human :refer :all]
+            [ttt-clojure.player :refer :all]))
 
 
 (defn game-won? [board]
@@ -34,7 +35,7 @@
     (recur (update-board
              board
              ((first players-info) :piece)
-             (read-string (fetch-player-move (ask-player-for-move ((first players-info) :name)) board)))
+             (read-string (get-player-input (ask-player-for-move ((first players-info) :name)) (validate-move board))))
            (reverse players-info)))))
 
 (defn start-game []
