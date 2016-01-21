@@ -33,6 +33,12 @@
      (let [result (get-move "O" [ 0 "X"  2
                                   3 "O" "X"
                                   6  7   8])]
-       (should= 0 result)))))
+       (should= 0 result)))
+
+  (it "returns the best move for the computer"
+    (let [result (get-move "X" ["X" "O" "X"
+                                 3  "O" "O"
+                                 6  "X"  8])]
+      (should= 3 result)))))
 
 
