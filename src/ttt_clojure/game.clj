@@ -18,20 +18,6 @@
     players-info
     (reverse players-info)))
 
-(defn get-player-input [message validator]
-  (let [input (prompt message)]
-    (if (validator input)
-     input
-     (do
-       (print (invalid-input input))
-       (get-player-input message validator)))))
-
-(defn get-player-name []
-  (get-player-input ask-player-for-name valid-name?))
-
-(defn get-player-piece []
-  (clojure.string/upper-case (get-player-input ask-player-for-piece valid-piece?)))
-
 (defn validate-move [board]
   (fn [move]
     (valid-move? move board)))

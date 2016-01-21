@@ -14,7 +14,10 @@
 
 (deftype Human []
   Player
-  (fetch-player-name [this] (get-player-input ask-player-for-name valid-name?)))
+  (fetch-player-name [this] (get-player-input ask-player-for-name valid-name?))
+  (fetch-player-piece [this]
+    (clojure.string/upper-case
+      (get-player-input ask-player-for-piece valid-piece?))))
 
 (defn new-human []
   (Human.))
