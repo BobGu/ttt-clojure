@@ -11,7 +11,6 @@
      (do
        (print (invalid-input input))
        (get-player-input message validator)))))
-
 (defn validate-move [board]
   (fn [move]
     (valid-move? move board)))

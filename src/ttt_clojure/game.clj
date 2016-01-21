@@ -2,7 +2,9 @@
   (:require [ttt-clojure.board :refer :all]
             [ttt-clojure.message-factory :refer :all]
             [ttt-clojure.validate-input :refer :all]
-            [ttt-clojure.input :refer :all]))
+            [ttt-clojure.input :refer :all]
+            [ttt-clojure.human :refer :all]))
+
 
 (defn game-won? [board]
   (some true? (map #(all-spaces-the-same? %) (possible-wins board))))
@@ -32,18 +34,14 @@
     (recur (update-board
              board
              ((first players-info) :piece)
-             (read-string (get-player-input (ask-player-for-move ((first players-info) :name)) (validate-move board))))
+             (read-string (fetch-player-move (ask-player-for-move ((first players-info) :name)) board)))
            (reverse players-info)))))
-
-(defn get-player-one-info []
-  {:name (get-player-name) :piece (get-player-piece)})
-
-(defn players-info [player1-info]
-  [player1-info {:name (get-player-name) :piece (opposite-piece (player1-info :piece))}])
 
 (defn start-game []
   (print instructions)
-  (let  [players-info (-> (get-player-one-info)(players-info))
+  (let  [player1-info {:name (fetch-player-name human) :piece (fetch-player-piece human)}
+         player2-info {:name (fetch-player-name human) :piece (opposite-piece (player1-info :piece))}
+         players-info [player1-info player2-info]
          turn-order-message (ask-player-for-turn-order players-info)
          turn-order (get-player-input turn-order-message valid-turn-order?)]
   (print (moves empty-board (assign-turn-order turn-order players-info)))))
