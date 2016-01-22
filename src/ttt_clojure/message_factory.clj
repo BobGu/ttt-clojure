@@ -11,8 +11,8 @@
   (yellow "What piece would you like to be?  Please type in X or O"))
 
 (defn ask-player-for-turn-order [players-info]
-  (yellow (str "Enter 1 if you would like " ((first players-info) :name)  " to go first and enter 2 if you would
-    like " ((first players-info) :name) " to go second")))
+  (yellow (str "Enter 1 if you would like " (.get-name (first players-info))  " to go first and enter 2 if you would
+    like " (.get-name (first players-info)) " to go second")))
 
 (defn board-formatter [board]
   (str "     |     |     |\n "
@@ -46,3 +46,7 @@
 
 (defn player-confirmation [name piece]
   (str "Welcome " name " you are the " piece "s"))
+
+(def game-mode
+  (yellow (str "Welcome to Tic Tac Toe!  Please choose a game mode.  Type in hh
+                to player human vs human or hc to play human vs the comoputer")))

@@ -1,6 +1,7 @@
 (ns ttt-clojure.negamax
   (:require [ttt-clojure.board :refer :all]
-            [ttt-clojure.game :refer :all]))
+            [ttt-clojure.game :refer :all]
+            [ttt-clojure.player :refer :all]))
 
 (defn abs [n] (max n (- n)))
 
@@ -35,5 +36,16 @@
     (into score-map (mergeMatches scored-spaces))))
 
 (defn get-move [piece board]
-  (let [scores (score-map piece board)]
-    (first (to-set (last (vals scores))))))
+  (let [scores (score-map piece board)
+        recommended-space (first (to-set (last (vals scores))))]
+    recommended-space))
+
+(deftype Computer []
+  Player
+  (fetch-player-name [this] "Johnny-5")
+  (fetch-player-move [this piece message board] (get-move piece board)))
+
+(defn new-computer [] (Computer.))
+
+(def computer (new-computer))
+

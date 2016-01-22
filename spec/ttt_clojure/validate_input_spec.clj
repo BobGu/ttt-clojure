@@ -50,3 +50,16 @@
 
   (it "should return false if they don't enter a number"
     (should-not (valid-move? "blah blah blah" [0 1 2 3 4 5 6 7 8]))))
+
+(describe "valid-game-mode?"
+  (it "should return true if they pick a valid game mode"
+    (should (valid-game-mode? "hc")))
+
+  (it "should return false if they pick an invalid game mode"
+    (should-not (valid-game-mode? "poooooop on a stick!")))
+
+  (it "should return true if they pick a valid game mode"
+    (should (valid-game-mode? "HC")))
+
+  (it "should return true if they pick a valid game mode"
+    (should (valid-game-mode? "hh"))))

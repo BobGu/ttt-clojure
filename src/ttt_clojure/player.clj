@@ -1,6 +1,7 @@
 (ns ttt-clojure.player)
 
 (defprotocol Player
-  (fetch-player-name [this])
-  (fetch-player-piece [this]))
+  (get-piece [this])
+  (get-name [this])
+  (get-move [this name board]))
 

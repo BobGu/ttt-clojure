@@ -2,7 +2,9 @@
   (:require [ttt-clojure.board :refer :all]
             [ttt-clojure.message-factory :refer :all]
             [ttt-clojure.validate-input :refer :all]
-            [ttt-clojure.input :refer :all]))
+            [ttt-clojure.input :refer :all]
+            [ttt-clojure.human :refer :all]
+            [ttt-clojure.player :refer :all]))
 
 (defn game-won? [board]
   (some true? (map #(all-spaces-the-same? %) (possible-wins board))))
@@ -18,10 +20,6 @@
     players-info
     (reverse players-info)))
 
-(defn validate-move [board]
-  (fn [move]
-    (valid-move? move board)))
-
 (defn opposite-piece [piece]
   (if (= "X" piece) "O" "X"))
 
@@ -31,25 +29,39 @@
   (print (board-formatter board))
   (if (game-over? board)
     (if (game-won? board)
-      (winner-message ((last players-info) :name))
+      (winner-message (.get-name (last players-info)))
       tie-message)
     (recur (update-board
              board
-             ((first players-info) :piece)
-             (read-string (get-player-input (ask-player-for-move ((first players-info) :name)) (validate-move board))))
+             (.get-piece (first players-info))
+             (read-string
+               (let [current-player (first players-info)]
+                 (.get-move
+                   current-player
+                   (ask-player-for-move (.get-name current-player))
+                 board))))
            (reverse players-info)))))
 
-(defn get-player-one-info []
-  {:name (get-player-name) :piece (get-player-piece)})
+(defn get-game-mode []
+  (clojure.string/upper-case (get-player-input game-mode valid-game-mode?)))
 
-(defn players-info [player1-info]
-  [player1-info {:name (get-player-name) :piece (opposite-piece (player1-info :piece))}])
+(defn player2-piece [player1-info]
+  (opposite-piece (player1-info :piece)))
+
+(defn get-players-info []
+  (if (= (get-game-mode) "HH")
+    (let [first-player-name (get-player-input ask-player-for-name valid-name?)
+          first-player-piece (get-player-input ask-player-for-piece valid-piece?)
+          second-player-name (get-player-input ask-player-for-name valid-name?)
+          second-player-piece (opposite-piece first-player-piece)]
+      [ (new-human first-player-name first-player-piece)
+        (new-human second-player-name second-player-piece) ])))
 
 (defn start-game []
+  (let [players-info (get-players-info)
+        turn-order-message (ask-player-for-turn-order players-info)
+        turn-order (get-player-input turn-order-message valid-turn-order?)]
   (print instructions)
-  (let  [players-info (-> (get-player-one-info)(players-info))
-         turn-order-message (ask-player-for-turn-order players-info)
-         turn-order (get-player-input turn-order-message valid-turn-order?)]
   (print (moves empty-board (assign-turn-order turn-order players-info)))))
 
 (defn -main []

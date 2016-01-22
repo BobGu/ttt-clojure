@@ -12,14 +12,17 @@
        (print (invalid-input input))
        (get-player-input message validator)))))
 
-(deftype Human []
+(defn validate-move [board]
+  (fn [move]
+    (valid-move? move board)))
+
+(deftype Human [name piece]
   Player
-  (fetch-player-name [this] (get-player-input ask-player-for-name valid-name?))
-  (fetch-player-piece [this]
-    (clojure.string/upper-case
-      (get-player-input ask-player-for-piece valid-piece?))))
+  (get-name [this] name)
+  (get-piece [this] piece)
+  (get-move [this message board]
+    (get-player-input message (validate-move board))))
 
-(defn new-human []
-  (Human.))
+(defn new-human [name piece]
+  (Human. name piece))
 
-(def human (new-human))
