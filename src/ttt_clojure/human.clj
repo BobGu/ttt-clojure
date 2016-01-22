@@ -21,8 +21,8 @@
   (fetch-player-piece [this]
     (clojure.string/upper-case
       (get-player-input ask-player-for-piece valid-piece?)))
-  (fetch-player-move [this name board]
-    (get-player-input (ask-player-for-move name) (validate-move board))))
+  (fetch-player-move [this message board]
+    (get-player-input message (validate-move board))))
 
 (defn new-human []
   (Human.))

@@ -35,7 +35,11 @@
     (recur (update-board
              board
              ((first players-info) :piece)
-             (read-string (get-player-input (ask-player-for-move ((first players-info) :name)) (validate-move board))))
+             (read-string
+               (fetch-player-move
+                 human
+                 (ask-player-for-move ((first players-info) :name))
+                 board)))
            (reverse players-info)))))
 
 (defn start-game []
