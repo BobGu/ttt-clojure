@@ -83,4 +83,3 @@
     (should (game-over? ["X" "X" "O"
                          "O" "O" "X"
                          "X" "O" "X"]))))
-

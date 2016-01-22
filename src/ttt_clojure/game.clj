@@ -43,6 +43,7 @@
            (reverse players-info)))))
 
 (defn start-game []
+  (get-player-input game-mode valid-game-mode?)
   (print instructions)
   (let  [player1-info {:name (fetch-player-name human) :piece (fetch-player-piece human)}
          player2-info {:name (fetch-player-name human) :piece (opposite-piece (player1-info :piece))}

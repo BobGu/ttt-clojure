@@ -11,3 +11,4 @@
     (should= "2"
       (with-in-str "2"
         (fetch-player-move human "rob" [0 1 2 3 4 5 6 7 8])))))
+
