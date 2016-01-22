@@ -83,3 +83,7 @@
     (should (game-over? ["X" "X" "O"
                          "O" "O" "X"
                          "X" "O" "X"]))))
+
+(describe "get-game-mode"
+  (it "returns game mode when valid"
+    (should= "HC" (with-in-str "hc" (get-game-mode)))))

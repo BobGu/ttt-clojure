@@ -6,7 +6,6 @@
             [ttt-clojure.human :refer :all]
             [ttt-clojure.player :refer :all]))
 
-
 (defn game-won? [board]
   (some true? (map #(all-spaces-the-same? %) (possible-wins board))))
 
@@ -42,14 +41,23 @@
                  board)))
            (reverse players-info)))))
 
+(defn get-game-mode []
+  (clojure.string/upper-case (get-player-input game-mode valid-game-mode?)))
+
+(defn human-vs-human-info []
+  (let [player1-info {:type human :name (fetch-player-name human) :piece (fetch-player-piece human)}
+        player2-info {:type human :name (fetch-player-name human) :piece (opposite-piece (player1-info :piece))}]
+  [player1-info player2-info]))
+
+(defn get-players-info []
+  (if (= (get-game-mode) "HH")
+    (human-vs-human-info)))
+
 (defn start-game []
-  (get-player-input game-mode valid-game-mode?)
+  (let [players-info (get-players-info)
+        turn-order-message (ask-player-for-turn-order players-info)
+        turn-order (get-player-input turn-order-message valid-turn-order?)]
   (print instructions)
-  (let  [player1-info {:name (fetch-player-name human) :piece (fetch-player-piece human)}
-         player2-info {:name (fetch-player-name human) :piece (opposite-piece (player1-info :piece))}
-         players-info [player1-info player2-info]
-         turn-order-message (ask-player-for-turn-order players-info)
-         turn-order (get-player-input turn-order-message valid-turn-order?)]
   (print (moves empty-board (assign-turn-order turn-order players-info)))))
 
 (defn -main []
