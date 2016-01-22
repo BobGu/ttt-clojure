@@ -36,7 +36,7 @@
              ((first players-info) :piece)
              (read-string
                (fetch-player-move
-                 human
+                 ((first players-info) :type)
                  (ask-player-for-move ((first players-info) :name))
                  board)))
            (reverse players-info)))))
