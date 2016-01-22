@@ -3,7 +3,8 @@
     [ttt-clojure.game :refer :all]
     [ttt-clojure.board :refer :all]
     [ttt-clojure.message-factory :refer :all]
-    [ttt-clojure.validate-input :refer :all]))
+    [ttt-clojure.validate-input :refer :all]
+    [ttt-clojure.human :refer :all]))
 
 (describe "game-won?"
   (it "should return true if all pieces in the top row are the same"
@@ -54,7 +55,7 @@
       (with-in-str "2\n"
         (moves
           ["X" "X" 2 "O" "O" 5 6 7 8]
-          [{:name "Turtle" :piece "X"} {:name "Hare" :piece "O"}])))))
+          [{:type human :name "Turtle" :piece "X"} {:type human :name "Hare" :piece "O"}])))))
 
 (describe "game-tied?"
   (it "returns true if the game is tied and there are no empty spaces left"
@@ -85,5 +86,15 @@
                          "X" "O" "X"]))))
 
 (describe "get-game-mode"
+  (around [it]
+    (with-out-str (it)))
+
   (it "returns game mode when valid"
     (should= "HC" (with-in-str "hc" (get-game-mode)))))
+
+(describe "player2-piece"
+  (it "returns player two's piece"
+    (let [player1-info {:type human :name "Robert" :piece "O"}]
+      (should= "X"
+        (player2-piece player1-info)))))
+

@@ -44,9 +44,15 @@
 (defn get-game-mode []
   (clojure.string/upper-case (get-player-input game-mode valid-game-mode?)))
 
+(defn player2-piece [player1-info]
+  (opposite-piece (player1-info :piece)))
+
+(defn get-human-info []
+  {:type human :name (fetch-player-name human) :piece (fetch-player-piece human)})
+
 (defn human-vs-human-info []
-  (let [player1-info {:type human :name (fetch-player-name human) :piece (fetch-player-piece human)}
-        player2-info {:type human :name (fetch-player-name human) :piece (opposite-piece (player1-info :piece))}]
+  (let [player1-info (get-human-info)
+        player2-info {:type human :name (fetch-player-name human) :piece (player2-piece)}]
   [player1-info player2-info]))
 
 (defn get-players-info []
