@@ -37,6 +37,7 @@
              (read-string
                (fetch-player-move
                  ((first players-info) :type)
+                 ((first players-info) :piece)
                  (ask-player-for-move ((first players-info) :name))
                  board)))
            (reverse players-info)))))
@@ -52,7 +53,7 @@
 
 (defn human-vs-human-info []
   (let [player1-info (get-human-info)
-        player2-info {:type human :name (fetch-player-name human) :piece (player2-piece)}]
+        player2-info {:type human :name (fetch-player-name human) :piece (player2-piece player1-info)}]
   [player1-info player2-info]))
 
 (defn get-players-info []

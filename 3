@@ -44,7 +44,7 @@
 
   (describe "fetch-player-name"
     (it "returns a name"
-      (should= "Johnny-5" (fetch-player-name computer))))
+      (should= "Johnny-5" (fetch-player-name (computer)))))
 
   (describe "fetch-player-move"
     (it "returns a move"
@@ -52,4 +52,4 @@
         (let [board ["X" "O" "X"
                       3 "O" "O"
                       6 "X" 8]]
-        (fetch-player-move computer "X"  "Where would you like to move Johnny-5" board)))))
+        (fetch-player-move (computer) "Where would you like to move Johnny-5" board)))))

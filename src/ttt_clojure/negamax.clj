@@ -39,10 +39,12 @@
   (let [scores (score-map piece board)]
     (first (to-set (last (vals scores))))))
 
-(deftype Computer [piece]
+(deftype Computer []
   Player
   (fetch-player-name [this] "Johnny-5")
-  (fetch-player-move [this message board] (get-move piece board)))
+  (fetch-player-move [this piece message board] (get-move piece board)))
 
-(defn computer [piece] (Computer. piece))
+(defn new-computer [] (Computer.))
+
+(def computer (new-computer))
 
