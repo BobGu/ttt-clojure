@@ -1,5 +1,6 @@
 (ns ttt-clojure.negamax-spec
   (:require [speclj.core :refer :all]
+            [ttt-clojure.player :refer :all]
             [ttt-clojure.negamax :refer :all]))
 
   (describe "get-move"
@@ -41,4 +42,14 @@
                                  6  "X"  8])]
       (should= 3 result)))))
 
+  (describe "fetch-player-name"
+    (it "returns a name"
+      (should= "Johnny-5" (fetch-player-name (computer "X")))))
 
+  (describe "fetch-player-move"
+    (it "returns a move"
+      (should= 3
+        (let [board ["X" "O" "X"
+                      3 "O" "O"
+                      6 "X" 8]]
+        (fetch-player-move (computer "X") "Where would you like to move Johnny-5" board)))))

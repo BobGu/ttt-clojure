@@ -1,6 +1,7 @@
 (ns ttt-clojure.negamax
   (:require [ttt-clojure.board :refer :all]
-            [ttt-clojure.game :refer :all]))
+            [ttt-clojure.game :refer :all]
+            [ttt-clojure.player :refer :all]))
 
 (defn abs [n] (max n (- n)))
 
@@ -37,3 +38,11 @@
 (defn get-move [piece board]
   (let [scores (score-map piece board)]
     (first (to-set (last (vals scores))))))
+
+(deftype Computer [piece]
+  Player
+  (fetch-player-name [this] "Johnny-5")
+  (fetch-player-move [this message board] (get-move piece board)))
+
+(defn computer [piece] (Computer. piece))
+
