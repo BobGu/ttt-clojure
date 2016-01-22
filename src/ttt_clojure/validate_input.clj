@@ -21,3 +21,6 @@
   (if (number? move)
     (some #(= move %) board))))
 
+(defn valid-game-mode? [input]
+  (let [input (clojure.string/upper-case input)]
+  (or (= input "HC") (= input "HH"))))
