@@ -46,3 +46,7 @@
 
 (defn player-confirmation [name piece]
   (str "Welcome " name " you are the " piece "s"))
+
+(def game-mode
+  (yellow (str "Welcome to Tic Tac Toe!  Please choose a game mode.  Type in hh
+                to player human vs human or hc to play human vs the comoputer")))
