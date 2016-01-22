@@ -29,17 +29,17 @@
   (print (board-formatter board))
   (if (game-over? board)
     (if (game-won? board)
-      (winner-message ((last players-info) :name))
+      (winner-message (.get-name (last players-info)))
       tie-message)
     (recur (update-board
              board
-             ((first players-info) :piece)
+             (.get-piece (first players-info))
              (read-string
-               (fetch-player-move
-                 ((first players-info) :type)
-                 ((first players-info) :piece)
-                 (ask-player-for-move ((first players-info) :name))
-                 board)))
+               (let [current-player (first players-info)]
+                 (.get-move
+                   current-player
+                   (ask-player-for-move (.get-name current-player))
+                 board))))
            (reverse players-info)))))
 
 (defn get-game-mode []
@@ -48,17 +48,14 @@
 (defn player2-piece [player1-info]
   (opposite-piece (player1-info :piece)))
 
-(defn get-human-info []
-  {:type human :name (fetch-player-name human) :piece (fetch-player-piece human)})
-
-(defn human-vs-human-info []
-  (let [player1-info (get-human-info)
-        player2-info {:type human :name (fetch-player-name human) :piece (player2-piece player1-info)}]
-  [player1-info player2-info]))
-
 (defn get-players-info []
   (if (= (get-game-mode) "HH")
-    (human-vs-human-info)))
+    (let [first-player-name (get-player-input ask-player-for-name valid-name?)
+          first-player-piece (get-player-input ask-player-for-piece valid-piece?)
+          second-player-name (get-player-input ask-player-for-name valid-name?)
+          second-player-piece (opposite-piece first-player-piece)]
+      [ (new-human first-player-name first-player-piece)
+        (new-human second-player-name second-player-piece) ])))
 
 (defn start-game []
   (let [players-info (get-players-info)

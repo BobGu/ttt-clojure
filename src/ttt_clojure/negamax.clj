@@ -36,8 +36,9 @@
     (into score-map (mergeMatches scored-spaces))))
 
 (defn get-move [piece board]
-  (let [scores (score-map piece board)]
-    (first (to-set (last (vals scores))))))
+  (let [scores (score-map piece board)
+        recommended-space (first (to-set (last (vals scores))))]
+    recommended-space))
 
 (deftype Computer []
   Player
