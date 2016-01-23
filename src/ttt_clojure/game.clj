@@ -47,8 +47,8 @@
 
 (defn get-players-info []
   (if (= (get-game-mode) "HH")
-    (let [first-player-name (get-player-input ask-player-for-name valid-name?)
-          first-player-piece (get-player-input ask-player-for-piece valid-piece?)
+    (let [first-player-name (get-player-name)
+          first-player-piece (get-player-piece)
           second-player-name (get-player-input ask-player-for-name valid-name?)
           second-player-piece (opposite-piece first-player-piece)]
       [ (new-human first-player-name first-player-piece)

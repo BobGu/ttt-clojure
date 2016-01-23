@@ -24,3 +24,8 @@
 (defn valid-game-mode? [input]
   (let [input (clojure.string/upper-case input)]
   (or (= input "HC") (= input "HH"))))
+
+(defn validate-move [board]
+  (fn [move]
+    (valid-move? move board)))
+
