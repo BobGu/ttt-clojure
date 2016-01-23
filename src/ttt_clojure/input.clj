@@ -19,3 +19,6 @@
 
 (defn get-player-piece []
   (clojure.string/upper-case (get-player-input ask-player-for-piece valid-piece?)))
+
+(defn get-player-move [name board]
+  (read-string (get-player-input (ask-player-for-move name) (validate-move board))))

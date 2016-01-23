@@ -34,8 +34,8 @@
       tie-message)
     (recur (update-board
              board
-             (.get-piece (first players-info))
-             (read-string (.get-move current-player (ask-player-for-move( .get-name current-player)) board)))
+             (.get-piece current-player)
+             (.get-move current-player (.get-name current-player) board))
            (reverse players-info)
            (first players-info)))))
 
