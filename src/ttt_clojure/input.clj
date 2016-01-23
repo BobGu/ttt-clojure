@@ -22,3 +22,6 @@
 
 (defn get-player-move [name board]
   (read-string (get-player-input (ask-player-for-move name) (validate-move board))))
+
+(defn get-game-mode []
+  (clojure.string/upper-case (get-player-input game-mode valid-game-mode?)))

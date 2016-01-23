@@ -37,10 +37,7 @@
              (.get-piece current-player)
              (.get-move current-player (.get-name current-player) board))
            (reverse players-info)
-           (first players-info)))))
-
-(defn get-game-mode []
-  (clojure.string/upper-case (get-player-input game-mode valid-game-mode?)))
+           (last players-info)))))
 
 (defn player2-piece [player1-info]
   (opposite-piece (player1-info :piece)))
@@ -55,10 +52,10 @@
         (new-human second-player-name second-player-piece) ])))
 
 (defn start-game []
+  (print instructions)
   (let [players-info (get-players-info)
         turn-order-message (ask-player-for-turn-order players-info)
         turn-order (get-player-input turn-order-message valid-turn-order?)]
-  (print instructions)
   (print (moves empty-board (assign-turn-order turn-order players-info)))))
 
 (defn -main []
