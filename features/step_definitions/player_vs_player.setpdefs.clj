@@ -4,6 +4,9 @@
 
 (def world (atom {:outputs []
                   :input ""  }))
+(Given #"^I choose to play human vs human$" []
+  (swap! world update-in [:input]
+    str "hh\n"))
 
 (Given #"^I enter a valid name$" []
   (swap! world update-in [:input]
@@ -52,7 +55,7 @@
 
 (Given #"^the game is setup with players information$" []
   (swap! world update-in [:input]
-    str "john\nx\nbobby\n"))
+    str "hh\njohn\nx\nbobby\n"))
 
 (Given #"^I enter which player goes first" []
   (swap! world update-in[:input]
@@ -64,7 +67,7 @@
 
 (Given #"^the players have entered names and turn order$" []
   (swap! world update-in [:input]
-    str "john\nx\nbobby\n1\n"))
+    str "hh\njohn\nx\nbobby\n1\n"))
 
 (Then #"^I expect the first player is asked to choose a spot on the board$" []
   (should-contain #"Where would you like to move john"
@@ -188,7 +191,7 @@
 
 (Given #"^the players enter the correct input for the game$" []
   (swap! world update-in [:input]
-    str "Robert\nx\nJohn\n1\n0\n3\n1\n4\n2\n"))
+    str "hh\nRobert\nx\nJohn\n1\n0\n3\n1\n4\n2\n"))
 
 (Then #"I expect the game to confirm the players information (\d+) times$" []
   (last (@world :outputs)))

@@ -10,7 +10,8 @@ Feature: Game is set up properly
     And I should be asked for my player piece
 
   Scenario: A player gets asked for their piece again if entered incorrectly
-    Given I enter a valid name
+    Given I choose to play human vs human
+    And I enter a valid name
     And I enter a piece that is not a X or O
     And I enter a valid piece
     And I enter a valid name
@@ -67,7 +68,8 @@ Feature: Game is set up properly
     Then I expect to see the center square filled with the second players piece
 
   Scenario: Pieces are assigned to the right players
-    Given the player that enters their name first chooses to be the letter X
+    Given I choose to play human vs human
+    And the player that enters their name first chooses to be the letter X
     And that player chooses to go 2nd
     And the first player has picked the top left space on the board
     And the second player has picked the center space on the board
