@@ -25,7 +25,8 @@
 
 (defn moves [board players-info]
   (loop [board board
-         players-info players-info]
+         players-info players-info
+         current-player (first players-info)]
   (print (board-formatter board))
   (if (game-over? board)
     (if (game-won? board)
@@ -34,13 +35,9 @@
     (recur (update-board
              board
              (.get-piece (first players-info))
-             (read-string
-               (let [current-player (first players-info)]
-                 (.get-move
-                   current-player
-                   (ask-player-for-move (.get-name current-player))
-                 board))))
-           (reverse players-info)))))
+             (read-string (.get-move current-player (ask-player-for-move( .get-name current-player)) board)))
+           (reverse players-info)
+           (first players-info)))))
 
 (defn get-game-mode []
   (clojure.string/upper-case (get-player-input game-mode valid-game-mode?)))
