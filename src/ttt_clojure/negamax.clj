@@ -35,17 +35,17 @@
         scored-spaces (map #(hash-map (negamax piece board %) %) spaces)]
     (into score-map (mergeMatches scored-spaces))))
 
-(defn get-move [piece board]
+(defn best-move [piece board]
   (let [scores (score-map piece board)
         recommended-space (first (to-set (last (vals scores))))]
     recommended-space))
 
-(deftype Computer []
+(deftype Computer [piece]
   Player
-  (fetch-player-name [this] "Johnny-5")
-  (fetch-player-move [this piece message board] (get-move piece board)))
+  (get-name [this] "Johnny-5")
+  (get-piece [this] piece)
+  (get-move [this message board]
+    (print message)
+    (best-move (.get-piece this) board)))
 
-(defn new-computer [] (Computer.))
-
-(def computer (new-computer))
-
+(defn new-computer [piece] (Computer. piece))

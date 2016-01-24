@@ -25,3 +25,6 @@
 
 (defn get-game-mode []
   (clojure.string/upper-case (get-player-input game-mode valid-game-mode?)))
+
+(defn get-turn-order [message]
+  (get-player-input message valid-turn-order?))

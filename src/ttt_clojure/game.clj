@@ -35,12 +35,9 @@
     (recur (update-board
              board
              (.get-piece current-player)
-             (.get-move current-player (.get-name current-player) board))
+             (.get-move current-player (ask-player-for-move (.get-name current-player)) board))
            (reverse players-info)
            (last players-info)))))
-
-(defn player2-piece [player1-info]
-  (opposite-piece (player1-info :piece)))
 
 (defn get-players-info []
   (if (= (get-game-mode) "HH")
@@ -54,8 +51,8 @@
 (defn start-game []
   (print instructions)
   (let [players-info (get-players-info)
-        turn-order-message (ask-player-for-turn-order players-info)
-        turn-order (get-player-input turn-order-message valid-turn-order?)]
+        turn-order-message (ask-player-for-turn-order (.get-name (first players-info)))
+        turn-order (get-turn-order turn-order-message)]
   (print (moves empty-board (assign-turn-order turn-order players-info)))))
 
 (defn -main []

@@ -9,8 +9,8 @@
   Player
   (get-name [this] name)
   (get-piece [this] piece)
-  (get-move [this name board]
-    (get-player-move name board)))
+  (get-move [this message board]
+    (get-player-move message board)))
 
 (defn new-human [name piece]
   (Human. name piece))

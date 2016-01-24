@@ -55,7 +55,7 @@
       (with-in-str "2\n"
         (moves
           ["X" "X" 2 "O" "O" 5 6 7 8]
-          [{:type human :name "Turtle" :piece "X"} {:type human :name "Hare" :piece "O"}])))))
+          [(new-human "Turtle" "X") (new-human "Hare" "O")])))))
 
 (describe "game-tied?"
   (it "returns true if the game is tied and there are no empty spaces left"
@@ -84,17 +84,4 @@
     (should (game-over? ["X" "X" "O"
                          "O" "O" "X"
                          "X" "O" "X"]))))
-
-(describe "get-game-mode"
-  (around [it]
-    (with-out-str (it)))
-
-  (it "returns game mode when valid"
-    (should= "HC" (with-in-str "hc" (get-game-mode)))))
-
-(describe "player2-piece"
-  (it "returns player two's piece"
-    (let [player1-info {:type human :name "Robert" :piece "O"}]
-      (should= "X"
-        (player2-piece player1-info)))))
 

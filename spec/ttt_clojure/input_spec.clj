@@ -15,3 +15,11 @@
     (should= "Where would you like to move?\n"
     (with-out-str (with-in-str "4"
     (prompt "Where would you like to move?"))))))
+
+(describe "get-game-mode"
+  (around [it]
+    (with-out-str (it)))
+
+  (it "returns game mode when valid"
+    (should= "HC" (with-in-str "hc" (get-game-mode)))))
+
