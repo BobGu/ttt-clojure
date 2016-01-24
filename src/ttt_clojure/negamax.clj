@@ -40,12 +40,3 @@
         recommended-space (first (to-set (last (vals scores))))]
     recommended-space))
 
-(deftype Computer [piece]
-  Player
-  (get-name [this] "Johnny-5")
-  (get-piece [this] piece)
-  (get-move [this message board]
-    (print message)
-    (best-move (.get-piece this) board)))
-
-(defn new-computer [piece] (Computer. piece))
