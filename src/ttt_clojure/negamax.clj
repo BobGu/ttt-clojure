@@ -12,7 +12,7 @@
   (if (game-won? board) 10 0))
 
 (defn negamax
-  ([piece board index](negamax piece board index 1 (count (spaces-available board))))
+  ([piece board index](negamax piece board index 1 (depth board)))
   ([piece board index color depth]
   (let [board (update-board board piece index)
         spaces (spaces-available board)]

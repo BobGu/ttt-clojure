@@ -35,4 +35,4 @@
   (every? (fn [space] (= (first set-of-spaces) space)) set-of-spaces))
 
 (defn depth [board]
-  (+ 1 (count (spaces-available board))))
+  (count (spaces-available board)))
