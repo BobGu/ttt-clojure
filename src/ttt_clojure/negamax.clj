@@ -26,14 +26,14 @@
 (defn set-union [s1 s2]
   (clojure.set/union (to-set s1) (to-set s2)))
 
-(defn mergeMatches [propertyMapList]
-  (reduce #(merge-with set-union %1 %2) {} propertyMapList))
+(defn score-and-list-of-spaces [scored-spaces]
+  (reduce #(merge-with set-union %1 %2) {} scored-spaces))
 
 (defn score-map [piece board]
   (let [score-map (sorted-map)
         spaces (spaces-available board)
         scored-spaces (map #(hash-map (negamax piece board %) %) spaces)]
-    (into score-map (mergeMatches scored-spaces))))
+    (into score-map (score-and-list-of-spaces scored-spaces))))
 
 (defn best-move [piece board]
   (let [scores (score-map piece board)
