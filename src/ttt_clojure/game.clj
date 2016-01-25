@@ -5,15 +5,13 @@
             [ttt-clojure.input :refer :all]
             [ttt-clojure.human :refer :all]
             [ttt-clojure.player :refer :all]
-            [ttt-clojure.rules :refer :all]))
+            [ttt-clojure.rules :refer :all]
+            [ttt-clojure.negamax :refer :all]))
 
 (defn assign-turn-order [turn-order players-info]
   (if (= turn-order "1")
     players-info
     (reverse players-info)))
-
-(defn opposite-piece [piece]
-  (if (= "X" piece) "O" "X"))
 
 (defn moves [board players-info]
   (loop [board board
