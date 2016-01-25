@@ -42,3 +42,8 @@
                                  6  "X"  8])]
       (should= 3 result)))))
 
+(describe "opposite-piece"
+  (it "returns the opposite piece"
+    (should= "O"
+      (opposite-piece "X"))))
+
