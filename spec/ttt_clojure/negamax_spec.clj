@@ -26,8 +26,8 @@
   (context "blocks oppponents best move"
     (it "returns the best move for the computer"
       (let [result (best-move "O" [ 0  "X" 2
-                                  "X" "O" 5
-                                   6   7  8])]
+                                   "X" "O" 5
+                                    6   7  8])]
         (should= 0 result)))
 
    (it "returns the best move for the computer"
@@ -38,8 +38,8 @@
 
   (it "returns the best move for the computer"
     (let [result (best-move "X" ["X" "O" "X"
-                                 3  "O" "O"
-                                 6  "X"  8])]
+                                  3  "O" "O"
+                                  6  "X"  8])]
       (should= 3 result)))))
 
 (describe "opposite-piece"

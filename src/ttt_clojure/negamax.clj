@@ -21,7 +21,7 @@
         spaces (spaces-available board)]
     (if (game-over? board)
       (* color (* depth (score board)))
-      (best-value (flatten (map #(negamax (opposite-piece piece) board % (- color) (dec depth)) spaces)))))))
+      (apply max (map #(* -1 (negamax (opposite-piece piece) board % (- color) (dec depth))) spaces))))))
 
 (defn to-set [s]
   (if (set? s) s #{s}))
