@@ -9,6 +9,9 @@
             [ttt-clojure.negamax :refer :all]
             [ttt-clojure.computer :refer :all]))
 
+(defn negamax-strategy []
+  (fn [piece board] (best-move piece board)))
+
 (defn assign-turn-order [turn-order players-info]
   (if (= turn-order "1")
     players-info
@@ -42,7 +45,7 @@
     (let [first-player-name (get-player-name)
           first-player-piece (get-player-piece)]
       [ (new-human first-player-name first-player-piece)
-        (new-computer (opposite-piece first-player-piece))])))
+        (new-computer (opposite-piece first-player-piece) (negamax-strategy))])))
 
 (defn start-game []
   (print instructions)
