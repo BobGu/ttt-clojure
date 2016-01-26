@@ -6,7 +6,8 @@
             [ttt-clojure.human :refer :all]
             [ttt-clojure.player :refer :all]
             [ttt-clojure.rules :refer :all]
-            [ttt-clojure.negamax :refer :all]))
+            [ttt-clojure.negamax :refer :all]
+            [ttt-clojure.computer :refer :all]))
 
 (defn assign-turn-order [turn-order players-info]
   (if (= turn-order "1")
@@ -36,7 +37,12 @@
           second-player-name (get-player-input ask-player-for-name valid-name?)
           second-player-piece (opposite-piece first-player-piece)]
       [ (new-human first-player-name first-player-piece)
-        (new-human second-player-name second-player-piece) ])))
+        (new-human second-player-name second-player-piece) ])
+
+    (let [first-player-name (get-player-name)
+          first-player-piece (get-player-piece)]
+      [ (new-human first-player-name first-player-piece)
+        (new-computer (opposite-piece first-player-piece))])))
 
 (defn start-game []
   (print instructions)
