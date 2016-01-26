@@ -7,7 +7,11 @@
             [ttt-clojure.player :refer :all]
             [ttt-clojure.rules :refer :all]
             [ttt-clojure.negamax :refer :all]
-            [ttt-clojure.computer :refer :all]))
+            [ttt-clojure.computer :refer :all]
+            [ttt-clojure.minimax :refer :all]))
+
+(defn minimax-strategy []
+  (fn [piece board] (better-move piece board)))
 
 (defn negamax-strategy []
   (fn [piece board] (best-move piece board)))
@@ -45,7 +49,7 @@
     (let [first-player-name (get-player-name)
           first-player-piece (get-player-piece)]
       [ (new-human first-player-name first-player-piece)
-        (new-computer (opposite-piece first-player-piece) (negamax-strategy))])))
+        (new-computer (opposite-piece first-player-piece) (minimax-strategy))])))
 
 (defn start-game []
   (print instructions)
