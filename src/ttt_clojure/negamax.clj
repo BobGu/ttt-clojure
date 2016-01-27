@@ -1,7 +1,8 @@
 (ns ttt-clojure.negamax
   (:require [ttt-clojure.board :refer :all]
             [ttt-clojure.player :refer :all]
-            [ttt-clojure.rules :refer :all]))
+            [ttt-clojure.rules :refer :all]
+            [clojure.set :refer :all]))
 
 (defn opposite-piece [piece]
   (if (= "X" piece) "O" "X"))
