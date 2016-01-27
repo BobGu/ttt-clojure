@@ -18,11 +18,11 @@
     players-info
     (reverse players-info)))
 
-(defn moves [board players-info]
+(defn moves [board players-info input output]
   (loop [board board
          players-info players-info
          current-player (first players-info)]
-  (output (board-formatter board))
+  ((output) (board-formatter board))
   (if (game-over? board)
     (if (game-won? board)
       (winner-message (.get-name (last players-info)))
@@ -48,12 +48,14 @@
       [ (new-human first-player-name first-player-piece)
         (new-computer (opposite-piece first-player-piece) (minimax-strategy))])))
 
-(defn start-game []
-  (output instructions)
+(defn start-game [input output]
+  ((output) instructions)
   (let [players-info (get-players-info)
         turn-order-message (ask-player-for-turn-order (.get-name (first players-info)))
         turn-order (get-turn-order turn-order-message)]
-  (output (moves empty-board (assign-turn-order turn-order players-info)))))
+  ((output) (moves empty-board (assign-turn-order turn-order players-info) input output))))
 
-(defn -main []
-  (start-game))
+(defn -main
+  ([](-main #(fn [] (read-line)) #(fn [string] (println string))))
+  ([input output]
+    (start-game input output)))

@@ -1,11 +1,6 @@
 (ns ttt-clojure.input
   (:require [ttt-clojure.validate-input :refer :all]
             [ttt-clojure.message-factory :refer :all]))
-(defn input []
-  (fn [] (read-line)))
-
-(defn output [string]
-  (println string))
 
 (defn prompt [message]
   (println message)
