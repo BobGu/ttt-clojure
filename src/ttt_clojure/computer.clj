@@ -7,8 +7,8 @@
   (get-name [this] "Johnny-5")
   (get-piece [this] piece)
   (get-strategy [this] strategy)
-  (get-move [this message board]
-    (print message)
+  (get-move [this message board input output]
+    ((output)message)
     ((.get-strategy this) (.get-piece this) board)))
 
 (defn new-computer [piece strategy] (Computer. piece strategy))

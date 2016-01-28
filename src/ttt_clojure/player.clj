@@ -4,5 +4,5 @@
   (get-piece [this])
   (get-name [this])
   (get-strategy [this])
-  (get-move [this name board]))
+  (get-move [this name board input output]))
 

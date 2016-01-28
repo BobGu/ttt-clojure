@@ -30,29 +30,29 @@
     (recur (update-board
              board
              (.get-piece current-player)
-             (.get-move current-player (ask-player-for-move (.get-name current-player)) board))
+             (.get-move current-player (ask-player-for-move (.get-name current-player)) board input output))
            (reverse players-info)
            (last players-info)))))
 
-(defn get-players-info []
-  (if (= (get-game-mode) "HH")
-    (let [first-player-name (get-player-name)
-          first-player-piece (get-player-piece)
-          second-player-name (get-player-input ask-player-for-name valid-name?)
+(defn get-players-info [input output]
+  (if (= (get-game-mode input output) "HH")
+    (let [first-player-name (get-player-name input output)
+          first-player-piece (get-player-piece input output)
+          second-player-name (get-player-name input output)
           second-player-piece (opposite-piece first-player-piece)]
       [ (new-human first-player-name first-player-piece)
         (new-human second-player-name second-player-piece) ])
 
-    (let [first-player-name (get-player-name)
-          first-player-piece (get-player-piece)]
+    (let [first-player-name (get-player-name input output)
+          first-player-piece (get-player-piece input output)]
       [ (new-human first-player-name first-player-piece)
         (new-computer (opposite-piece first-player-piece) (minimax-strategy))])))
 
 (defn start-game [input output]
   ((output) instructions)
-  (let [players-info (get-players-info)
+  (let [players-info (get-players-info input output)
         turn-order-message (ask-player-for-turn-order (.get-name (first players-info)))
-        turn-order (get-turn-order turn-order-message)]
+        turn-order (get-turn-order turn-order-message input output)]
   ((output) (moves empty-board (assign-turn-order turn-order players-info) input output))))
 
 (defn -main

@@ -2,29 +2,29 @@
   (:require [ttt-clojure.validate-input :refer :all]
             [ttt-clojure.message-factory :refer :all]))
 
-(defn prompt [message]
-  (println message)
-  (read-line))
+(defn prompt [message input output]
+  ((output) message)
+  ((input)))
 
-(defn get-player-input [message validator]
-  (let [input (prompt message)]
-    (if (validator input)
-     input
+(defn get-player-input [message validator input output]
+  (let [player-input (prompt message input output)]
+    (if (validator player-input)
+     player-input
      (do
-       (print (invalid-input input))
-       (get-player-input message validator)))))
+       (print (invalid-input player-input))
+       (get-player-input message validator input output)))))
 
-(defn get-player-name []
-  (get-player-input ask-player-for-name valid-name?))
+(defn get-player-name [input output]
+  (get-player-input ask-player-for-name valid-name? input output))
 
-(defn get-player-piece []
-  (clojure.string/upper-case (get-player-input ask-player-for-piece valid-piece?)))
+(defn get-player-piece [input output]
+  (clojure.string/upper-case (get-player-input ask-player-for-piece valid-piece? input output)))
 
-(defn get-player-move [name board]
-  (read-string (get-player-input (ask-player-for-move name) (validate-move board))))
+(defn get-player-move [name board input output]
+  (read-string (get-player-input (ask-player-for-move name) (validate-move board) input output)))
 
-(defn get-game-mode []
-  (clojure.string/upper-case (get-player-input game-mode valid-game-mode?)))
+(defn get-game-mode [input output]
+  (clojure.string/upper-case (get-player-input game-mode valid-game-mode? input output)))
 
-(defn get-turn-order [message]
-  (get-player-input message valid-turn-order?))
+(defn get-turn-order [message input output]
+  (get-player-input message valid-turn-order? input output))
