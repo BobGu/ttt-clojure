@@ -1,10 +1,11 @@
 (ns ttt-clojure.game-spec
   (:require [speclj.core :refer :all]
-    [ttt-clojure.game :refer :all]
-    [ttt-clojure.board :refer :all]
-    [ttt-clojure.message-factory :refer :all]
-    [ttt-clojure.validate-input :refer :all]
-    [ttt-clojure.human :refer :all]))
+            [ttt-clojure.spec-helper :refer [default-input default-output]
+            [ttt-clojure.game :refer :all]
+            [ttt-clojure.board :refer :all]
+            [ttt-clojure.message-factory :refer :all]
+            [ttt-clojure.validate-input :refer :all]
+            [ttt-clojure.human :refer :all]))
 
 (describe "assign-turn-order"
   (it "should reutrn the players info in the correct order"
@@ -24,5 +25,7 @@
       (with-in-str "2\n"
         (moves
           ["X" "X" 2 "O" "O" 5 6 7 8]
-          [(new-human "Turtle" "X") (new-human "Hare" "O")])))))
+          [(new-human "Turtle" "X") (new-human "Hare" "O")]
+          (default-input)
+          (default-output))))))
 

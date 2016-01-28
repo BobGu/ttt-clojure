@@ -9,21 +9,21 @@
      -10
       0)))
 
-(defn minimax [piece board index maximizing-player]
+(defn minimax [piece board index maximizing-player depth]
   (let [board (update-board board piece index)
         spaces (spaces-available board)]
   (if (game-over? board)
-    (score-minimax board maximizing-player)
+    (* depth (score-minimax board maximizing-player))
     (let [maximizing-player (not maximizing-player)]
       (if maximizing-player
-        (apply max (map #(minimax (opposite-piece piece) board % maximizing-player) spaces))
-        (apply min (map #(minimax (opposite-piece piece) board % maximizing-player) spaces)))))))
+        (apply max (map #(minimax (opposite-piece piece) board % maximizing-player (dec depth)) spaces))
+        (apply min (map #(minimax (opposite-piece piece) board % maximizing-player (dec depth)) spaces)))))))
 
 
 (defn score-that-map [piece board]
   (let [score-map (sorted-map)
         spaces (spaces-available board)
-        scored-spaces (map #(hash-map (minimax piece board % true) %) spaces)]
+        scored-spaces (map #(hash-map (minimax piece board % true (depth board)) %) spaces)]
     (into score-map (score-and-list-of-spaces scored-spaces))))
 
 (defn better-move [piece board]
