@@ -12,7 +12,7 @@
 (defn minimax [piece board index maximizing-player depth original-depth]
   (let [board (update-board board piece index)
         spaces (spaces-available board)]
-  (if (or (game-over? board) (< 3 (- original-depth depth)))
+  (if (or (game-over? board) (< 4 (- original-depth depth)))
     (* depth (score-minimax board maximizing-player))
     (let [maximizing-player (not maximizing-player)]
       (if maximizing-player
