@@ -79,7 +79,8 @@
   (context "benchmarking"
     (it "the second time we look for the score it is faster"
       (let [memoize-minimax  #(m-minimax "X" [0 1 2 3 4 5 6 7 8] 0 true 9 9)
-            first-run-ms (find-milliseconds (clock-speed  memoize-minimax))
+            minimax #(minimax "X" [0 1 2 3 4 5 6 7 8 9] 0 true 9 9)
+            first-run-ms  (find-milliseconds (clock-speed minimax))
             second-run-ms (find-milliseconds (clock-speed memoize-minimax))]
         (should (> first-run-ms second-run-ms))))))
 

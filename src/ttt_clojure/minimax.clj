@@ -24,7 +24,7 @@
 (defn score-that-map [piece board]
   (let [score-map (sorted-map)
         spaces (spaces-available board)
-        scored-spaces (map #(hash-map (minimax piece board % true (depth board) (depth board)) %) spaces)]
+        scored-spaces (map #(hash-map (m-minimax piece board % true (depth board) (depth board)) %) spaces)]
     (into score-map (score-and-list-of-spaces scored-spaces))))
 
 (defn better-move [piece board]
