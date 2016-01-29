@@ -49,26 +49,31 @@
     (it "should find the best move quickly"
       (let [best-move-function #(better-move "X" ["O" 1 2 3 4 5 6 7 8])
             milliseconds (find-milliseconds (clock-speed best-move-function))]
-        (should= 3000 milliseconds)))))
+        (should (> 1000 milliseconds)))))
+
+    (it "should find the best move quickly"
+      (let [best-move-function #(better-move "X" [0 1 2 3 4 5 6 7 8])
+            milliseconds (find-milliseconds (clock-speed best-move-function))]
+        (should (> 4000 milliseconds)))))
 
 (describe "minimax"
   (it "returns a score based on the move"
     (should= 10
       (minimax "X" ["X" "O" "X"
                     "O" "O" "X"
-                    "X" "X"  8] 8 true 1)))
+                    "X" "X"  8] 8 true 1 1)))
 
   (it "returns a score based on the move"
     (should= 50
       (minimax "X" ["X" "X" 2
                     "O" "O" 5
-                     6   7  8] 2 true 5)))
+                     6   7  8] 2 true 5 5)))
 
   (it "returns negative score if maximizing player is about to lose"
     (should= -40
       (minimax "X" ["X" "X" 2
                     "O" "O" 5
-                     6   7  8] 6 true 5))))
+                     6   7  8] 6 true 5 5))))
 
 
 
