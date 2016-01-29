@@ -49,12 +49,12 @@
     (it "should find the best move quickly"
       (let [best-move-function #(better-move "X" ["O" 1 2 3 4 5 6 7 8])
             milliseconds (find-milliseconds (clock-speed best-move-function))]
-        (should (> 1000 milliseconds)))))
+        (should (> 1000 milliseconds))))
 
     (it "should find the best move quickly"
       (let [best-move-function #(better-move "X" [0 1 2 3 4 5 6 7 8])
             milliseconds (find-milliseconds (clock-speed best-move-function))]
-        (should (> 4000 milliseconds)))))
+        (should (> 1000 milliseconds))))))
 
 (describe "minimax"
   (it "returns a score based on the move"
@@ -75,5 +75,11 @@
                     "O" "O" 5
                      6   7  8] 6 true 5 5))))
 
-
+(describe "m-minimax"
+  (context "benchmarking"
+    (it "the second time we look for the score it is faster"
+      (let [memoize-minimax  #(m-minimax "X" [0 1 2 3 4 5 6 7 8] 0 true 9 9)
+            first-run-ms (find-milliseconds (clock-speed  memoize-minimax))
+            second-run-ms (find-milliseconds (clock-speed memoize-minimax))]
+        (should (> first-run-ms second-run-ms))))))
 

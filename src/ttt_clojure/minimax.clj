@@ -19,6 +19,7 @@
         (apply max (map #(minimax (opposite-piece piece) board % maximizing-player (dec depth) original-depth) spaces))
         (apply min (map #(minimax (opposite-piece piece) board % maximizing-player (dec depth) original-depth) spaces)))))))
 
+(def m-minimax (memoize minimax))
 
 (defn score-that-map [piece board]
   (let [score-map (sorted-map)
